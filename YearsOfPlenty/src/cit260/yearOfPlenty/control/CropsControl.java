@@ -13,42 +13,34 @@ import java.util.Random;
  */
 public class CropsControl {
 
-    
-//define variables for random
-//private static final int CROP_BASE = 3;
+    /*define variables for random
+    private static final int CROP_BASE = 3;
 
-//private static final int CROP_RANGE = 3;  
+    private static final int CROP_RANGE = 3;  
 
-//private static Random random = new Random();
+    private static Random random = new Random();
     
-//public static int calcBushelsPerAcre(){
+    public static int calcBushelsPerAcre(){
 
-    //int bushelsPerAcre = random.nextInt(CROP_RANGE) + CROP_BASE;
-    //return bushelsPerAcre;
+        int bushelsPerAcre = random.nextInt(CROP_RANGE) + CROP_BASE;
+        return bushelsPerAcre;
 
-//}
-//Purpose: 
-//Input needed: how many acres, how many bushels per acre
-//Output to be returned: crop yield (total number of bushels) >= 0
-//Validation rules: acres can’t be negative
-public static int calcCropYield(int acres, int bushelsPerAcre)
-{
-// define variables
+    }
+    Purpose: 
+    Input needed: how many acres, how many bushels per acre
+    Output to be returned: crop yield (total number of bushels) >= 0
+    Validation rules: acres can’t be negative*/
+    public static int calcCropYield(int acres, int bushelsPerAcre) { 
 
-//int cropYield; 
-    
-//return acres;
-    
-//If acres < 0, return -1 or if acres > 1,000, return -1
-    if (acres < 0 || acres > 1000) { 
-        return -1; }
-    
-    
-    
-//cropYield = acres * bushels
-   int cropYield = acres * bushelsPerAcre;
-   return cropYield;
-}
+        //If acres < 0, return -1 or if acres > 1,000, return -1
+        if (acres < 0 || acres > 1000) { 
+            return -1; 
+        }
+        
+        //parameters are valid, so calculate crop yield
+        int cropYield = acres * bushelsPerAcre;
+        return cropYield;
+    }
 
     
 }
