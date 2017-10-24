@@ -35,8 +35,8 @@ public class PharaohShareTest {
         System.out.println("calcPharaohShare");
         double cropYield = 100.0;
         double pharaohPercent = 0.10;
-        double pharaohShare = 100.0;
-        double expResult = 110.0;
+        double pharaohShare = 10.0;
+        double expResult = 10.0;
         double result = PharaohShare.calcPharaohShare(cropYield, pharaohPercent, pharaohShare);
         assertEquals(expResult, result, 0.0);
         
@@ -65,27 +65,14 @@ public class PharaohShareTest {
         System.out.println("calcPharaohShare");
         double cropYield = 25000.0;
         double pharaohPercent = 0.10;
-        double pharaohShare = 100.0;
-        double expResult = -1.0;
+        double pharaohShare = 2500.0;
+        double expResult = 2500.0;
         double result = PharaohShare.calcPharaohShare(cropYield, pharaohPercent, pharaohShare);
         assertEquals(expResult, result, 0.0);
         
     }
     
-    /**
-     * Test 4 of calcPharaohShare method, of class PharaohShare.
-     */
-    @Test
-    public void testCalcPharaohShare4() {
-        System.out.println("calcPharaohShare");
-        double cropYield = 20000.0;
-        double pharaohPercent = 0.10;
-        double pharaohShare = 100.0;
-        double expResult = 2100.0;
-        double result = PharaohShare.calcPharaohShare(cropYield, pharaohPercent, pharaohShare);
-        assertEquals(expResult, result, 0.0);
-        
-    }
+   
     
     /**
      * Test 5 of calcPharaohShare method, of class PharaohShare.
@@ -95,8 +82,8 @@ public class PharaohShareTest {
         System.out.println("calcPharaohShare");
         double cropYield = 0.0;
         double pharaohPercent = 0.10;
-        double pharaohShare = 100.0;
-        double expResult = 100.0;
+        double pharaohShare = 0.0;
+        double expResult = 0.0;
         double result = PharaohShare.calcPharaohShare(cropYield, pharaohPercent, pharaohShare);
         assertEquals(expResult, result, 0.0);
         

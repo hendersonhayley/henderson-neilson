@@ -30,20 +30,19 @@ public class PharaohShare {
    pharaohPercent = 0.10;
     
 //pharaohCut = (cropYield * .10);
-    double pharaohCut = cropYield * pharaohPercent;
+    //(we aren't keeping a running total)double pharaohCut = cropYield * pharaohPercent;
     
 //Get the pharaohShare from Crops
 //theCrops.getPharaohShare();
 
 //pharaohShare is pharaohShare = pharaohShare + pharaohCut
-     pharaohShare += pharaohCut;
+     //We are keeping a running total pharaohShare += pharaohCut;
      
-     if (cropYield > 20000.00){
-    return -1;
-}
      
-  //set the pharaohShare in crops.
-  //theCrops = setPharaohShare(phar
+//calculate pharaohshare
+
+     
+  pharaohShare = cropYield * pharaohPercent;
   
 //Return pharaohCut;
      return pharaohShare;

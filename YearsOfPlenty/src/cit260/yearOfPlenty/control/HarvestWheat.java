@@ -11,7 +11,7 @@ import java.util.Random;
  */
 
 
-public class Harvest {
+public class HarvestWheat {
     
     /*define variables for random, random will fill locust, will be 3-15*/
    // private static final int POP_BASE = 3;
@@ -34,7 +34,7 @@ public class Harvest {
 * Validations will be, is the cropYield positive.**/ 
     
     
-   public static double calcHarvest(double cropYield, double locust, double pharaohPercent){
+   public static double calcHarvest(double cropYield, double locust, double pharaohShare){
 
 //If cropYield < 0, return -1 or if harvest > 10,000, return -1;
 if (cropYield < 0) {
@@ -42,19 +42,17 @@ if (cropYield < 0) {
             }
 
 
-//pharaohPercent = .10;
-pharaohPercent = 0.10;
+//pharaohPercent = .10;  this is done in the pharaohshare method
+//pharaohPercent = 0.10;
 
 //pharaohCut = (cropYield  * .10);
-double pharaohCut = (cropYield  * pharaohPercent);
+//(done in pharaohShare)double pharaohCut = (cropYield  * pharaohPercent);
 
 //– (//harvest = cropYield – (pharaohCut + locust);
-double harvestCut = pharaohCut + locust;
+double harvestCut = pharaohShare + locust;
 double harvest = cropYield - harvestCut;
 
-if (harvest > 10000.00){
-    return -1;
-}
+
 if (harvest < 0.00){
     return 0.00;
 }

@@ -40,7 +40,12 @@ public static int calcPopulation(int currentPop, int popMoveIn){
 if (currentPop < 0 || currentPop > 10000) {
         return -1;
 }
- 
+//make sure popMoveIn is a positive number
+
+if (popMoveIn < 0) {
+    return -1;
+            }
+
 //Population = currentPop + popMoveIn
         int population = currentPop + popMoveIn;
 
