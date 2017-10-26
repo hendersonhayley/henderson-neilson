@@ -15,6 +15,15 @@ import java.util.Objects;
 public class Game implements Serializable {
     private int totalTime;
     private Player Player;
+    private Crops theCrops=null;
+
+    public Crops getTheCrops() {
+        return theCrops;
+    }
+
+    public void setTheCrops(Crops _cropRef) {
+        theCrops = _cropRef;
+    }
 
     public Game(int totalTime) {
         this.totalTime = totalTime;
