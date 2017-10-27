@@ -42,28 +42,4 @@ public class CropsControl {
         int cropYield = acres * bushelsPerAcre;
         return cropYield;
     }
-public static void createCrops(){
-    Crops theCrops=new Crops();
-    theCrops.setYear(0);
-    theCrops.setPopulation(95);
-    theCrops.setNewPeople(5);
-    theCrops.setCropYield(3);
-    theCrops.setNumberWhoDied(0);
-    theCrops.setPharaohsShare(200);
-    theCrops.setWheatInStore(2800);
-    theCrops.setAcres(1000);
-    theCrops.setHarvest(0);
-    theCrops.setPlanted(1000);
-    theCrops.setFed(0);
-    
-    cit260.yearOfPlenty.Game.setTheCrops(theCrops);
 }
-    
-}
-
-
-
-
-
-
-

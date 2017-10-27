@@ -6,7 +6,6 @@
 package cit260.yearOfPlenty;
 
 import java.io.Serializable;
-import java.util.Objects;
 
 /**
  *
@@ -15,7 +14,11 @@ import java.util.Objects;
 public class Game implements Serializable {
     private int totalTime;
     private Player Player;
-    private Crops theCrops=null;
+    private Crops theCrops = null;
+    
+    //constructor   
+     public Game() {
+    }
 
     public Crops getTheCrops() {
         return theCrops;
