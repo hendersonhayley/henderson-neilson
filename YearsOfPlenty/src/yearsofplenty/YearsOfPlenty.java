@@ -22,6 +22,7 @@ public class YearsOfPlenty {
     
     private static Game currentGame = null;
     private static Player player = null;
+    private static Crops crops = null;
 
     public static Game getCurrentGame() {
         return currentGame;
@@ -44,6 +45,14 @@ public class YearsOfPlenty {
     public static void main(String[] args) {
         StartProgramView startProgramView=new StartProgramView();
         startProgramView.displayStartProgramView();
+    }
+
+    public static void setTheCrops(Crops theCrops) {
+        YearsOfPlenty.crops = theCrops;
+    }
+    
+    public static Crops getCrops() {
+        return crops;
     }
     
     

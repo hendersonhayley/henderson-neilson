@@ -28,7 +28,6 @@ public class GameControl {
 
     public static void createCrops() {
         Crops theCrops = new Crops();
-        Game theGame = new Game();
         
         theCrops.setYear(0);
         theCrops.setPopulation(95);
@@ -37,12 +36,12 @@ public class GameControl {
         theCrops.setNumberWhoDied(0);
         theCrops.setPharaohsShare(200);
         theCrops.setWheatInStore(2800);
-        theCrops.setAcres(1000);
-        theCrops.setHarvest(0);
+        theCrops.setAcres(100);
+        theCrops.setHarvest(3);
         theCrops.setPlanted(1000);
         theCrops.setFed(0);
         
-        theGame.setTheCrops(theCrops);
+        YearsOfPlenty.setTheCrops(theCrops);
     }
 
     public static void createNewGame(Player player) {
