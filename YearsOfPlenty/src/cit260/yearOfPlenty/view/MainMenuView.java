@@ -23,7 +23,7 @@ public class MainMenuView {
         System.out.println(
                 "\n*************************************"
               + "\n*                                   *"
-              + "\n*  Main Menu                        *"
+              + "\n*  Game Menu                        *"
               + "\n*                                   *"
               + "\n*  1 - Start New Game               *"
               + "\n*  2 - Get and Start a Saved Game   *"
@@ -63,7 +63,7 @@ public class MainMenuView {
         
         //display the game menu
         GameMenuView gameMenu = new GameMenuView();
-        gameMenu.displayMenu();
+        GameMenuView.displayGameMenu();
     }
     
     static void loadGame() {

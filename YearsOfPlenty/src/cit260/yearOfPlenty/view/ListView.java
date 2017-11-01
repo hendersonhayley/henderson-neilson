@@ -7,12 +7,11 @@ package cit260.yearOfPlenty.view;
 
 /**
  *
- * @author Brennan.Neilson
+ * @author hayley henderson
  */
-public class CropsView {
+public class ListView {
     
-     public static void displayCropsView(){
-    System.out.println("/n*** displayCropsView() function called***");
-    
-}
+    public static void displayListView(){
+    System.out.println("/n*** displayListView() function called***");
+    }
 }
