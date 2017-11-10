@@ -63,6 +63,10 @@ public class StartProgramView {
     }
     public static void displayNextView() {
         //System.out.println("\n *** displayNextView() called *** \n");
+        //MainMenuView mainMenuView = new MainMenuView();
+        //mainMenuView.display();
+        //mainMenuView.getInput();
+        MainMenuView MainMenuView = new MainMenuView();
         MainMenuView.displayMainMenu();
         //control returns to this point when user exits to main menu
     }

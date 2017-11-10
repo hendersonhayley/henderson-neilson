@@ -11,15 +11,11 @@ import java.util.Scanner;
  *
  * @author Brennan.Neilson
  */
-public class GameMenuView {
+public class GameMenuView extends View {
     public static final int MAX = 5;
-
-    static void displayGameMenu() {
-        
-        Scanner keyboard = new Scanner(System.in);
-        int option;
-        
-        System.out.println( "\n*************************************"
+    
+    public GameMenuView() {
+        super("\n*************************************"
               + "\n*                                   *"
               + "\n*  Main Menu                        *"
               + "\n*                                   *"
@@ -29,12 +25,17 @@ public class GameMenuView {
               + "\n*  4 - Manage Crops                 *"
               + "\n*  5 - Quit                         *"
               + "\n*                                   *"
-              + "\n*************************************"
-        );
+              + "\n*************************************");
+    }
+    
+    int option;
+
+    public void displayGameMenu() {
+        
+        this.display();
         
         do {
-            System.out.println("Please enter an option.");
-            option = keyboard.nextInt();     //get the entered input
+            option = this.getInput();     //get the entered input
             
             if(option<1 || option>MAX){
                 System.out.println("Invalid entry, Please choose an option of 1-5.");
@@ -52,6 +53,7 @@ public class GameMenuView {
             CropsView.displayCropsView();
             }
             else if (option==5){
+            MainMenuView MainMenuView = new MainMenuView();
             MainMenuView.displayMainMenu();
             }
         } while (option!=MAX);

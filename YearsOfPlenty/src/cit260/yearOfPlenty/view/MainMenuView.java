@@ -13,15 +13,10 @@ import yearsofplenty.YearsOfPlenty;
  *
  * @author Brennan.Neilson
  */
-public class MainMenuView {
+public class MainMenuView extends View {
     
-    public static final int MAX = 5;
-    static void displayMainMenu() {
-        Scanner keyboard = new Scanner(System.in);
-        int option;
-        
-        System.out.println(
-                "\n*************************************"
+    public MainMenuView() {
+        super("\n*************************************"
               + "\n*                                   *"
               + "\n*  Game Menu                        *"
               + "\n*                                   *"
@@ -31,29 +26,40 @@ public class MainMenuView {
               + "\n*  4 - Save This Game               *"
               + "\n*  5 - Quit                         *"
               + "\n*                                   *"
-              + "\n*************************************"
-        );
-        
+              + "\n*************************************");
+    }
+    
+    int option;
+    
+    public void displayMainMenu() {
+        this.display();
         do {
-            System.out.println("Please enter an option.");
-            option = keyboard.nextInt();
-            if (option < 1 || option > MAX) { //must be between 1 and 5
+            option = this.getInput();
+            if (option < 1 || option > 5) { //must be between 1 and 5
                 System.out.println("Invalid option: Please choose an option 1 - 5");
             }
-            if (option == 1) {
-                MainMenuView.startNewGame();
-            } else if (option == 2) {
-                MainMenuView.loadGame();
-            } else if (option == 3) {
-                HelpMenuView.displayHelpMenu();
-            } else if (option == 4) {
-                MainMenuView.saveGame();
-            } else if (option == 5) {
-                //goodbye message
-                System.out.println("Goodbye...Thanks for playing.");
-                System.exit(0);
+            switch (option) {
+                case 1:
+                    MainMenuView.startNewGame();
+                    break;
+                case 2:
+                    MainMenuView.loadGame();
+                    break;
+                case 3:
+                    HelpMenuView helpMenuView = new HelpMenuView();
+                    helpMenuView.displayHelpMenu();
+                    break;
+                case 4:
+                    MainMenuView.saveGame();
+                    break;
+                case 5:
+                    //goodbye message
+                    System.out.println("Goodbye...Thanks for playing.");
+                    System.exit(0);
+                default:
+                    break;
             }
-        } while (option != MAX);
+        } while (option != 5);
     }
     
     static void startNewGame() {
@@ -63,7 +69,7 @@ public class MainMenuView {
         
         //display the game menu
         GameMenuView gameMenu = new GameMenuView();
-        GameMenuView.displayGameMenu();
+        gameMenu.displayGameMenu();
     }
     
     static void loadGame() {

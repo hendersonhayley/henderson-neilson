@@ -53,7 +53,7 @@ public class CropsView {
             System.out.println("\nSuccess. You gained " + wheatYield + " bushels of wheat and you now have " + newLand + " acres available, as well as " + newWheat + " bushels in your stores.");
             
             try {
-                Thread.sleep(6000);
+                Thread.sleep(2000);
             } catch (InterruptedException ex) {
                 Logger.getLogger(CropsView.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -82,11 +82,12 @@ public class CropsView {
             System.out.println("\nSuccess. You now have " + newLand + " acres of land. and you lost " + wheatYield + " bushels of wheat. You now have " + newWheat + " bushels in your stores.");
             
             try {
-                Thread.sleep(6000);
+                Thread.sleep(2000);
             } catch (InterruptedException ex) {
                 Logger.getLogger(CropsView.class.getName()).log(Level.SEVERE, null, ex);
             }
-            GameMenuView.displayGameMenu();
+            GameMenuView gameMenuView = new GameMenuView();
+            gameMenuView.displayGameMenu();
         }
         
     }
