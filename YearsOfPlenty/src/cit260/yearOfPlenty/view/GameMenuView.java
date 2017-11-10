@@ -17,7 +17,7 @@ public class GameMenuView extends View {
     public GameMenuView() {
         super("\n*************************************"
               + "\n*                                   *"
-              + "\n*  Main Menu                        *"
+              + "\n*  Game Menu                        *"
               + "\n*                                   *"
               + "\n*  1 - View the map                 *"
               + "\n*  2 - View Lists                   *"
