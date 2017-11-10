@@ -50,6 +50,7 @@ public class GameMenuView extends View {
             GameMenuView.newLocation();
             }
             else if (option==4){
+            CropsView CropsView = new CropsView();
             CropsView.displayCropsView();
             }
             else if (option==5){
