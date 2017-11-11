@@ -132,17 +132,19 @@ public class CropsView extends View{
     //Returns:  Acres and Planted
    
     public void plantCropsView(Crops theCropsObject){
-           
+            int toPlant;
             int newAcres;
             int currentAcres = theCropsObject.getAcres();  //get the amount of acres they have
             
             System.out.println("\nHow many acred of land do you want to plant with seed?");
             
-            int toPlant = this.getInput();  //calls getInput method in view superclass
+            
             
             
         //test for parameters
             do{
+                toPlant = this.getInput(); 
+                //calls getInput method in view superclass
                 if(toPlant < 0){
                     System.out.println("\nI am sorry master, I cannot do this.");
                     System.out.println("\nYou cannot plant a negative amount of land.");
