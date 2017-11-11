@@ -37,6 +37,11 @@ public class CropsView extends View{
         
         System.out.println("\n*** Current bushels available to feed the people with: " + theCropsObject.getWheatInStore());
         this.feedPeople(theCropsObject);
+        
+         System.out.println("\n*** Current acres available to plant seeds with: " + theCropsObject.getAcres());
+        this.plantCropsView(theCropsObject);
+        
+        
     }
     
     static void sellLand(Crops theCropsObject) {
@@ -115,10 +120,54 @@ public class CropsView extends View{
             
             System.out.println("\nSuccess. You fed " + bushelsOfGrain + " bushels to the people.");
             
-            GameMenuView gameMenuView = new GameMenuView();
-            gameMenuView.displayGameMenu();
+            
         }
         
     }
-     
-}
+    
+    
+    //the PlantCrops Method
+    //Purpose:  Get user input.  User inputs how many acres they want to plant in seed.
+    //Parameters:  Input is a Positive number and input is <=  the # of acres owned
+    //Returns:  Acres and Planted
+   
+    public void plantCropsView(Crops theCropsObject){
+           
+            int newAcres;
+            int currentAcres = theCropsObject.getAcres();  //get the amount of acres they have
+            
+            System.out.println("\nHow many acred of land do you want to plant with seed?");
+            
+            int toPlant = this.getInput();  //calls getInput method in view superclass
+            
+            
+        //test for parameters
+            do{
+                if(toPlant < 0){
+                    System.out.println("\nI am sorry master, I cannot do this.");
+                    System.out.println("\nYou cannot plant a negative amount of land.");
+                }
+                else if(toPlant > currentAcres){
+                    System.out.println("\nI am sorry master, I cannot do this.");
+                    System.out.println("\nYou cannot plant more acres than you own.");
+                }
+            }    
+            while(toPlant < 0 || toPlant > currentAcres);    
+             
+            
+        /*Calculate how many acres are left that are not planted.  Set the objects*/
+            
+            newAcres = (currentAcres - toPlant);
+            theCropsObject.setAcres(newAcres);
+            theCropsObject.setPlanted(toPlant);
+            
+            System.out.println("\nYou have chosen to plant " + toPlant + " acres of land.");
+            
+            GameMenuView gameMenuView = new GameMenuView();
+            gameMenuView.displayGameMenu();
+    }
+    
+}   
+ 
+    
+
