@@ -38,8 +38,11 @@ public class CropsView extends View{
         System.out.println("\n*** Current bushels available to feed the people with: " + theCropsObject.getWheatInStore());
         this.feedPeople(theCropsObject);
         
-         System.out.println("\n*** Current acres available to plant seeds with: " + theCropsObject.getAcres());
+        System.out.println("\n*** Current acres available to plant seeds with: " + theCropsObject.getAcres());
         this.plantCropsView(theCropsObject);
+        
+        System.out.println("\n*** Current acres available to harvest: " + theCropsObject.getAcres());
+        this.harvestWheatView(theCropsObject);
         
         
     }
@@ -136,7 +139,7 @@ public class CropsView extends View{
             int newAcres;
             int currentAcres = theCropsObject.getAcres();  //get the amount of acres they have
             
-            System.out.println("\nHow many acred of land do you want to plant with seed?");
+            System.out.println("\nHow many acres of land do you want to plant with seed?");
             
             
             
@@ -163,10 +166,36 @@ public class CropsView extends View{
             theCropsObject.setAcres(newAcres);
             theCropsObject.setPlanted(toPlant);
             
-            System.out.println("\nYou have chosen to plant " + toPlant + " acres of land.");
+            System.out.println("\nYou have chosen to plant " + toPlant + " acres of land.");         
+    }
+    
+    public void harvestWheatView(Crops theCropsObject){
+        
+        int amount;
+        int newAcres;
+        int currentAcres = theCropsObject.getAcres();
+        System.out.println("\nHow many acres do you want to harvest?");
+        
+        do{
+            amount = this.getInput();
             
-            GameMenuView gameMenuView = new GameMenuView();
-            gameMenuView.displayGameMenu();
+            if (amount < 0){
+                System.out.println("\nPlease enter a positive number.");
+            }
+            else if(amount > currentAcres){
+                System.out.println("\nI am sorry, you cannot harvest more acres than you own.");
+            }
+        }
+        while(amount < 0 || amount > currentAcres);
+        
+            newAcres = (currentAcres - amount);
+            theCropsObject.setAcres(newAcres);
+            theCropsObject.setHarvest(amount);
+            
+        System.out.println("\nYou have chosen to harvest " + amount + " acres of land.");
+        
+        GameMenuView gameMenuView = new GameMenuView();
+        gameMenuView.displayGameMenu();
     }
     
 }   
