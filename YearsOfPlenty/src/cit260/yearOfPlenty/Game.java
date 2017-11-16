@@ -15,9 +15,27 @@ public class Game implements Serializable {
     private int totalTime;
     private Player Player;
     private Crops theCrops = null;
+    private Map map;
+    private InventoryItem inventoryItem;
+
+    public InventoryItem getInventoryItem() {
+        return inventoryItem;
+    }
+
+    public void setInventoryItem(InventoryItem inventoryItem) {
+        this.inventoryItem = inventoryItem;
+    }
     
     //constructor   
      public Game() {
+    }
+
+    public Map getMap() {
+        return map;
+    }
+
+    public void setMap(Map map) {
+        this.map = map;
     }
 
     public Crops getTheCrops() {
