@@ -13,7 +13,7 @@ import java.util.Objects;
  */
 public class InventoryItem implements Serializable{
     private int quantity;
-    private String description;
+    public String description;
     
     private Game game;
     

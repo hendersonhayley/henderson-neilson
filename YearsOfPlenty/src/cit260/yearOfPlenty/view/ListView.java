@@ -5,6 +5,9 @@
  */
 package cit260.yearOfPlenty.view;
 
+import cit260.yearOfPlenty.InventoryItem;
+import cit260.yearOfPlenty.control.GameControl;
+
 /**
  *
  * @author hayley henderson
@@ -12,6 +15,10 @@ package cit260.yearOfPlenty.view;
 public class ListView {
     
     public static void displayListView(){
-    System.out.println("/n*** displayListView() function called***");
+        System.out.println("Items");
+        InventoryItem[] items = GameControl.createItems();
+        for (InventoryItem item : items) {
+            System.out.println(item.description);
+        }
     }
 }

@@ -13,6 +13,15 @@ import java.io.Serializable;
 public class Map implements Serializable{
     private int rowCount;
     private int colCount;
+    private Location[][] locations;
+
+    public Location[][] getLocations() {
+        return locations;
+    }
+
+    public void setLocations(Location[][] locations) {
+        this.locations = locations;
+    }
    
  //cardinality relationship to game, one to   
     private Game game;
@@ -28,7 +37,7 @@ public class Map implements Serializable{
     }
     
     
-     public Map() {
+    public Map() {
     }
 
     public int getRowCount() {

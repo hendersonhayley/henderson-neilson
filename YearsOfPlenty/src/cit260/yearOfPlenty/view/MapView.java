@@ -6,6 +6,9 @@
 package cit260.yearOfPlenty.view;
 
 import cit260.yearOfPlenty.Game;
+import cit260.yearOfPlenty.Location;
+import cit260.yearOfPlenty.Map;
+import cit260.yearOfPlenty.control.MapControl;
 import yearsofplenty.YearsOfPlenty;
 
 /**
@@ -40,6 +43,27 @@ public class MapView {
     
         YearsOfPlenty game = new YearsOfPlenty();
         Game currentGame = game.getCurrentGame();
+        
+        Map map = YearsOfPlenty.getMap();
+        Location[][] locations = map.getLocations();
+        
+        System.out.println("\nLocation Map");
+        
+        //Printing out column numbers
+        for (int i = 0; i < locations.length; i++) {
+            System.out.print((i + 1) + "\t");
+        }
+        System.out.print("\n------------------------------");
+        
+        //Printing out row numbers and locations
+        for (int i = 0; i < locations.length; i++) {
+            System.out.print("\n" + (i + 1) + "|\t");
+            for (int j = 0; j < locations.length; j++) {
+                System.out.print("??\t|\t");
+            }
+            System.out.print("\n-----------------------------");
+        } 
+        
         
     }
     

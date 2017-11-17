@@ -23,6 +23,24 @@ public class YearsOfPlenty {
     private static Game currentGame = null;
     private static Player player = null;
     private static Crops crops = null;
+    private static InventoryItem[] items = null;
+    private static Map map = null;
+
+    public static Map getMap() {
+        return map;
+    }
+
+    public static void setMap(Map map) {
+        YearsOfPlenty.map = map;
+    }
+
+    public static InventoryItem[] getItems() {
+        return items;
+    }
+
+    public static void setItems(InventoryItem[] items) {
+        YearsOfPlenty.items = items;
+    }
 
     public static Game getCurrentGame() {
         return currentGame;

@@ -5,6 +5,7 @@
  */
 package cit260.yearOfPlenty.control;
 
+import cit260.yearOfPlenty.Game;
 import cit260.yearOfPlenty.InventoryItem;
 import cit260.yearOfPlenty.Location;
 import cit260.yearOfPlenty.Map;
@@ -39,11 +40,26 @@ public class MapControl {
         if (items == null || items.length < 1) {
             System.out.println("\nThere was an error loading items.");
         }
+        Location[][] locations = MapControl.createLocations(noOfRows, noOfColumns);
         
+        //Saving things to our Map
         Map map = new Map();
         map.setRowCount(noOfRows);
         map.setColCount(noOfColumns);
+        map.setLocations(locations);
         
+        Game game = new Game();
+        game.setMap(map);
+        
+        return map;
+    }
+    
+    public static Location[][] createLocations(int noOfRows, int noOfColumns) {
+        
+        if (noOfRows < 0 || noOfColumns < 0) {
+            System.out.println("\nThere was an error creating the locations.");
+        }
+        // Create locations array. Nested for loops to set locations in the array.
         Location[][] locations = new Location[noOfRows][noOfColumns];
         for (int i = 0; i < noOfRows; i++) {
             for (int j = 0; j < noOfColumns; j++) {
@@ -54,10 +70,9 @@ public class MapControl {
         String nile = "\nYou have reached the Nile River."
                     + "\nYou cannot go further East.";
         locations[0][1].setDescription(nile);
-        System.out.println(locations[0][1].getDescription() + " " + items[2].getDescription());
+        //System.out.println(locations[0][1].getDescription() + " " + items[2].getDescription());
         
-        
-        return map;
+        return locations;
     }
     
 }

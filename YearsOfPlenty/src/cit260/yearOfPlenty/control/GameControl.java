@@ -9,6 +9,7 @@ import cit260.yearOfPlenty.Crops;
 import cit260.yearOfPlenty.Game;
 import cit260.yearOfPlenty.InventoryItem;
 import cit260.yearOfPlenty.ItemType;
+import cit260.yearOfPlenty.Map;
 import cit260.yearOfPlenty.Player;
 import yearsofplenty.YearsOfPlenty;
 
@@ -75,7 +76,22 @@ public class GameControl {
             
         }
         
-        MapControl.createMap(2, 2, GameControl.createItems());
+        Game game = new Game();
+        game.setPlayer(player);
+        
+        YearsOfPlenty.setCurrentGame(game);
+        
+        InventoryItem[] items = GameControl.createItems();
+        YearsOfPlenty.setItems(items);
+        
+        //Creating our map
+        Map map = MapControl.createMap(2, 2, items);
+        
+        if (map == null) {
+            System.out.println("There was an error loading the map.");
+        }
+        //Saving our map to the game object - YearsOfPlenty.java
+        YearsOfPlenty.setMap(map);
         
     }
     
