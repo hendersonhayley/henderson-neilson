@@ -63,37 +63,33 @@ public class MapView extends View{
             System.out.print("\n" + (i + 1) + "|\t");
             for (int j = 0; j < locations.length; j++) {
                 boolean visited = locations[i][j].isVisited();
-                //if (visited == false) {
-                //    System.out.print("??\t|\t");
-                //} else {
+                if (visited == false) {
+                    System.out.print("??\t|\t");
+                } else {
                     String mapSymbol = locations[i][j].getSymbol();
                     System.out.print(mapSymbol + "\t|\t");
-                //}
+                }
             }
             System.out.print("\n---------------------------------");
         }
+                
+        int row;
+        int column;
         
-        int option;
-        do {
-            System.out.println("\nEnter 5 to exit the map...");
-            option = this.getInput();
-        } while(option != 5);
-        
-        GameMenuView gameMenu = new GameMenuView();
-        gameMenu.displayGameMenu();
-        
-        
-        //int row;
-        //int column;
-        
-        //Future code to facilitate moving to map locations.
-        /*System.out.println("What row would you like to travel to?");
+        //Code to facilitate moving to map locations.
+        System.out.println("\nEnter 5 to exit the map...");
+        System.out.println("\nWhat row would you like to travel to?");
+        //Row selection
         do {
             row = this.getInput();
             if (row > locations.length || row <= 0) {
-                System.out.println("Please choose row 1 or 2.");
+                if (row == 5) {
+                    System.out.println("Exiting to Game Menu...");
+                } else {
+                    System.out.println("Please choose row 1 or 2.");
+                }
             }
-        } while (row != 5 || (row <= 0 && row > locations.length));
+        } while (row != 5 && row <= 0 && row > locations.length);
         
         if (row == 5) {
             GameMenuView gameMenu = new GameMenuView();
@@ -101,13 +97,42 @@ public class MapView extends View{
         }
         
         System.out.println("What column would you like to travel to?");
+        //Column selection
         do {
             column = this.getInput();
             if (column > locations.length || column <= 0) {
-                System.out.println("Please choose column 1 or 2.");
+                if (column == 5) {
+                    System.out.println("Exiting to Game Menu...");
+                } else {
+                    System.out.println("Please choose column 1 or 2.");
+                }
             }
-        } while (column != 5);*/
+        } while (column != 5 && column <= 0 && column > locations.length);
         
+        if (column == 5) {
+            GameMenuView gameMenu = new GameMenuView();
+            gameMenu.displayGameMenu();
+        } else {
+            row = row - 1;
+            column = column - 1;
+            String description = locations[row][column].getDescription();
+            System.out.println(description);
+            locations[row][column].setVisited(true);
+        }
+        
+        int option;
+        do {
+            System.out.println("\n\nEnter 5 to quit the map or enter 1 to view the map again.");
+            option = this.getInput();
+        } while (option != 5 && option != 1);
+        
+        if (option == 1) {
+            this.displayMapView();
+        } else if (option == 5) {
+            System.out.println("Exiting to Game Menu...");
+            GameMenuView gameMenu = new GameMenuView();
+            gameMenu.displayGameMenu();
+        }
         
     }
     
