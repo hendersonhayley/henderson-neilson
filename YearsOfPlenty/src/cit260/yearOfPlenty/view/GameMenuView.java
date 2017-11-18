@@ -41,28 +41,30 @@ public class GameMenuView extends View {
                 System.out.println("Invalid entry, Please choose an option of 1-5.");
             }
             if (option==1){
-            MapView.displayMapView();
+                MapView map = new MapView("");
+                map.displayMapView();
             }
             else if (option==2){
-            ListView.displayListView();
+                ListView.displayListView();
             }
             else if (option==3){
-            GameMenuView.newLocation();
+                this.newLocation();
             }
             else if (option==4){
-            CropsView CropsView = new CropsView();
-            CropsView.displayCropsView();
+                CropsView CropsView = new CropsView();
+                CropsView.displayCropsView();
             }
             else if (option==5){
-            MainMenuView MainMenuView = new MainMenuView();
-            MainMenuView.displayMainMenu();
+                MainMenuView MainMenuView = new MainMenuView();
+                MainMenuView.displayMainMenu();
             }
         } while (option!=MAX);
        
     }
     
-    static void newLocation(){
-        System.out.println("newLocation function will start.");
+    public void newLocation(){
+        MapView map = new MapView("");
+        map.displayMapView();
     }
     
 }

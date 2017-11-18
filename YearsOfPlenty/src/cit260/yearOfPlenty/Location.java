@@ -16,6 +16,15 @@ public class Location implements Serializable{
     private int column;
     private String description;
     private String symbol;
+    private boolean visited;
+
+    public boolean isVisited() {
+        return visited;
+    }
+
+    public void setVisited(boolean visited) {
+        this.visited = visited;
+    }
     
     private Game game;
     

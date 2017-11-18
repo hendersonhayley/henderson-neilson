@@ -32,7 +32,7 @@ public abstract class View implements ViewInterface {
         Scanner keyboard = new Scanner(System.in);
         int option;
         
-        System.out.println("Please enter an option.");
+        System.out.println("Please enter a number.");
         option = keyboard.nextInt();
             
         return option;

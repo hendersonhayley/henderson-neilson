@@ -67,10 +67,33 @@ public class MapControl {
                 locations[i][j] = location;
             }
         }
+        //Setting Description and Map Symbol for Map Locations.
         String nile = "\nYou have reached the Nile River."
                     + "\nYou cannot go further East.";
-        locations[0][1].setDescription(nile);
+        locations[0][0].setDescription(nile);
+        locations[0][0].setSymbol("NR");
+        locations[0][0].setVisited(false);
         //System.out.println(locations[0][1].getDescription() + " " + items[2].getDescription());
+        
+        String barn = "\nYou have reached the Barn."
+                    + "\nThe Barn is where all of your"
+                    + "\ngrain, hay, and straw is stored"
+                    + "\nas well as your livestock.";
+        locations[0][1].setDescription(barn);
+        locations[0][1].setSymbol("B");
+        locations[0][1].setVisited(false);
+        
+        String jewelryShop = "\nWhy are you wasting your time buying jewelry?"
+                    + "\nWe have work to do.";
+        locations[1][0].setDescription(jewelryShop);
+        locations[1][0].setSymbol("JS");
+        locations[1][0].setVisited(false);
+        
+        String pharaohsCourt = "\nYou have reached the Pharaoh's Court."
+                    + "\nPharaoh asks: 'Have you brought me my portion of grain?'";
+        locations[1][1].setDescription(pharaohsCourt);
+        locations[1][1].setSymbol("PC");
+        locations[1][1].setVisited(false);
         
         return locations;
     }
