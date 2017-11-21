@@ -12,8 +12,9 @@ import java.util.Objects;
  * @author Brennan.Neilson
  */
 public class InventoryItem implements Serializable{
-    private int quantity;
+    public int quantity;
     public String description;
+    
     
     private Game game;
     
