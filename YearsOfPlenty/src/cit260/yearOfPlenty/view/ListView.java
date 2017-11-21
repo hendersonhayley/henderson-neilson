@@ -12,7 +12,7 @@ import cit260.yearOfPlenty.control.GameControl;
 
 /**
  *
- * @author hayley henderson
+ * @author hayley henderson  I did the livestock and tools list. 
  *  Purpose: Let the user decide which list to view.  Livestock or Tools? 
  * Once the user has decided which list to view.  The total sum of each list will
  * show.  
@@ -36,7 +36,7 @@ public class ListView extends View{
         super("");
     }
     
-    public void displayListView(){
+     public void displayListView(){
        
      int option;
      int total=0;  
@@ -44,60 +44,68 @@ public class ListView extends View{
         System.out.println("\nWhat list would you like to view?"
                            + "\n1-Livestock"
                            + "\n2-Tools"
-                           + "\n3-Fields"
-                           + "\n5-Exit to Game Menu");
+                           + "\n5-Exit to Game Menu\n");
         
          //get input and validate
         do {
             option = this.getInput();
             
-            if (option <= 0 || option >= 4) {
+            if (option <= 0 || option >= 3) {
                 if (option == 5) {
                     System.out.println("Exiting to Game Menu...");
                 } else {
-                    System.out.println("Please choose 1, 2 or 3.");
+                    System.out.println("Please choose 1 or 2.");
                 }
             }
-        } while (option != 5 && option <= 0 && option >= 4);
+        } while (option != 5 && option <= 0 && option >= 3);
         
 //if user input 5, send them to the game menu
         if (option == 5) {
             GameMenuView gameMenu = new GameMenuView();
             gameMenu.displayGameMenu();
         }
-
   //if user enters 1, the livestock list will display
-       if (option ==1) {
+       if (option == 1) {
            System.out.println("Livestock List");
-          InventoryItem[] items = GameControl.createItems();
-  
-          //this adds up the total quantity for all the livestock       
-          for (int i=0; i<2; i++){
-               for (InventoryItem item : items)               {
-                     total += item.quantity;
-                   System.out.println(item.description);
+        //  
+         InventoryItem[] items = GameControl.createItems();
+         
+          //this adds up the total quantity for all the livestock    InventoryItem item : items   
+          for (int i=0; i<3; i++){
+             
+              /* for (*/InventoryItem n = items[i]; 
+                   
+                    total += n.quantity;
+                   System.out.println(n.description);
+                      
+         
   }
-  
-  }
-          System.out.println("You have a total of" + total + "livestock.");
+          System.out.println("\nYou have a total of " + total + " livestock.");
+          
+          
   }
        total = 0;
  
        //if user enter 2 the tools list will display     
-       if  (option == 2){
+       if (option == 2){
   System.out.println("Tools List");
            InventoryItem[] items = GameControl.createItems();
    
 //this adds up the total quantity for all the tools        
-           for (int i=3; i<5; i++){
-               for (InventoryItem item : items) {
-                    total += item.quantity;
-                    System.out.println(item.description);
-  }
+           for (int i=3; i<6; i++){
+               
+               InventoryItem n = items[i];
+               
+                    total += n.quantity;
+                    System.out.println(n.description);
+  
   
   }
-  }
-          System.out.println("You have a total of" + total + "Tools.");
+          System.out.println("\nYou have a total of " + total + " Tools.");
+                  System.out.println("\nExiting to Game Menu...");
+  
+ } 
+
           
        // if user enters 3 the fields list will display. Darren Kearns
        if (option == 3){
