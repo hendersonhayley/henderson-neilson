@@ -41,10 +41,10 @@ public class CropsView extends View{
         int[] sumArray = new int[2];
         for (GameInfoItem item : updateItems) {
             if (i < 2) {
-                sumArray[i] = item.quantity;
+                sumArray[i] = item.getQuantity();
             }
             i++;
-            System.out.println(item.description + " " + item.quantity);
+            System.out.println(item.getDescription() + " " + item.getQuantity());
         }
         
         sum = IntStream.of(sumArray).sum();

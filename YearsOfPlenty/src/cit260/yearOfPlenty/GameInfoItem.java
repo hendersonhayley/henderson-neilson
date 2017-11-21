@@ -12,8 +12,8 @@ import java.util.Objects;
  * @author brennanneilson
  */
 public class GameInfoItem {
-    public int quantity;
-    public String description;
+    private int quantity;
+    private String description;
     private Game game;
 
     public GameInfoItem() {
