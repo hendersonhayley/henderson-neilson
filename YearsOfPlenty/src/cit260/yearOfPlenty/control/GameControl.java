@@ -5,8 +5,10 @@
  */
 package cit260.yearOfPlenty.control;
 
+import cit260.yearOfPlenty.Actor;
 import cit260.yearOfPlenty.Crops;
 import cit260.yearOfPlenty.Game;
+import cit260.yearOfPlenty.InventoryActor;
 import cit260.yearOfPlenty.InventoryItem;
 import cit260.yearOfPlenty.ItemType;
 import cit260.yearOfPlenty.Map;
@@ -131,4 +133,22 @@ public class GameControl {
         return items;
     }
     
+    // Actor Array Darren Kearns Individual Assignment
+    public static InventoryActor[] createActor() {
+        InventoryActor[] actors = new InventoryActor[3];
+        
+        InventoryActor NEPHI = new InventoryActor();
+        NEPHI.setDescription("Nephi");
+        actors[Actor.NEPHI.ordinal()] = NEPHI;
+        
+        InventoryActor LAMAN = new InventoryActor();
+        LAMAN.setDescription("Laman");
+        actors[Actor.LAMAN.ordinal()] = LAMAN;
+        
+        InventoryActor LEMUEL = new InventoryActor();
+        LEMUEL.setDescription("Lemuel");
+        actors[Actor.LEMUEL.ordinal()] = LEMUEL;
+    
+        return actors;
+    }
 }

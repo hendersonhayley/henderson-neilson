@@ -5,6 +5,7 @@
  */
 package cit260.yearOfPlenty.view;
 
+import cit260.yearOfPlenty.InventoryActor;
 import cit260.yearOfPlenty.InventoryItem;
 import cit260.yearOfPlenty.control.GameControl;
 
@@ -19,6 +20,12 @@ public class ListView {
         InventoryItem[] items = GameControl.createItems();
         for (InventoryItem item : items) {
             System.out.println(item.description);
+        }
+        //Darren Kearns Individual Lesson 10
+        System.out.println("\nActors");
+        InventoryActor[] actors = GameControl.createActor();
+        for (InventoryActor actor : actors) {
+            System.out.println(actor.description);
         }
     }
 }
