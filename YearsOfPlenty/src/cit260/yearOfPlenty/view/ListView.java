@@ -5,7 +5,7 @@
  */
 package cit260.yearOfPlenty.view;
 
-import cit260.yearOfPlenty.InventoryActor;
+import cit260.yearOfPlenty.InventoryField;
 import cit260.yearOfPlenty.InventoryItem;
 import cit260.yearOfPlenty.control.GameControl;
 
@@ -44,20 +44,21 @@ public class ListView extends View{
         System.out.println("\nWhat list would you like to view?"
                            + "\n1-Livestock"
                            + "\n2-Tools"
+                           + "\n3-Fields"
                            + "\n5-Exit to Game Menu");
         
          //get input and validate
         do {
             option = this.getInput();
             
-            if (option <= 0 || option >= 3) {
+            if (option <= 0 || option >= 4) {
                 if (option == 5) {
                     System.out.println("Exiting to Game Menu...");
                 } else {
-                    System.out.println("Please choose 1 or 2.");
+                    System.out.println("Please choose 1, 2 or 3.");
                 }
             }
-        } while (option != 5 && option <= 0 && option >= 3);
+        } while (option != 5 && option <= 0 && option >= 4);
         
 //if user input 5, send them to the game menu
         if (option == 5) {
@@ -95,9 +96,24 @@ public class ListView extends View{
   }
   
   }
+  }
           System.out.println("You have a total of" + total + "Tools.");
-  
- } 
+          
+       // if user enters 3 the fields list will display. Darren Kearns
+       if (option == 3){
+       System.out.println("Field List");
+            InventoryField[] fields = GameControl.createField();
+            //Calculate quantity of fields. 
+            for (int i=0; i<2; i++){
+               for (InventoryField field : fields) {
+                    total += field.quantity;
+                    System.out.println(field.description);
+            }
+          
+       }
+            System.out.println("You have a total of" + total + "Fields.");
+ }
+ 
        
         /**
        *Old code from just printing off the items list 
@@ -108,8 +124,7 @@ public class ListView extends View{
         *}
         * */
         
-        /*
-        //Darren Kearns 
+        /* Darren Kearns Test.
         System.out.println("\nActors");
         InventoryActor[] actors = GameControl.createActor();
         for (InventoryActor actor : actors) {
@@ -117,6 +132,5 @@ public class ListView extends View{
         }
     */
     
-    }
-    
+}  
 }

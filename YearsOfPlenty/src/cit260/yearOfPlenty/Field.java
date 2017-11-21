@@ -9,9 +9,8 @@ package cit260.yearOfPlenty;
  *
  * @author darrenkearns
  */
-// Darren Kearns Individual
-public enum Actor {
-    NEPHI,
-    LAMAN,
-    LEMUEL
+public enum Field {
+    CORN,
+    WHEAT,
+    BARLEY
 }

@@ -5,10 +5,10 @@
  */
 package cit260.yearOfPlenty.control;
 
-import cit260.yearOfPlenty.Actor;
+import cit260.yearOfPlenty.Field;
 import cit260.yearOfPlenty.Crops;
 import cit260.yearOfPlenty.Game;
-import cit260.yearOfPlenty.InventoryActor;
+import cit260.yearOfPlenty.InventoryField;
 import cit260.yearOfPlenty.InventoryItem;
 import cit260.yearOfPlenty.ItemType;
 import cit260.yearOfPlenty.Map;
@@ -134,21 +134,24 @@ public class GameControl {
     }
     
     // Actor Array Darren Kearns Individual Assignment
-    public static InventoryActor[] createActor() {
-        InventoryActor[] actors = new InventoryActor[3];
+    public static InventoryField[] createField() {
+        InventoryField[] fields = new InventoryField[3];
         
-        InventoryActor NEPHI = new InventoryActor();
-        NEPHI.setDescription("Nephi");
-        actors[Actor.NEPHI.ordinal()] = NEPHI;
+        InventoryField CORN = new InventoryField();
+        CORN.setDescription("Corn");
+        CORN.setQuantity(5);
+        fields[Field.CORN.ordinal()] = CORN;
         
-        InventoryActor LAMAN = new InventoryActor();
-        LAMAN.setDescription("Laman");
-        actors[Actor.LAMAN.ordinal()] = LAMAN;
+        InventoryField WHEAT = new InventoryField();
+        WHEAT.setDescription("Wheat");
+        WHEAT.setQuantity(5);
+        fields[Field.WHEAT.ordinal()] = WHEAT;
         
-        InventoryActor LEMUEL = new InventoryActor();
-        LEMUEL.setDescription("Lemuel");
-        actors[Actor.LEMUEL.ordinal()] = LEMUEL;
+        InventoryField BARLEY = new InventoryField();
+        BARLEY.setDescription("Barley");
+        BARLEY.setQuantity(5);
+        fields[Field.BARLEY.ordinal()] = BARLEY;
     
-        return actors;
+        return fields;
     }
 }

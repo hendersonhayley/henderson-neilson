@@ -13,10 +13,19 @@ import java.io.Serializable;
  */
 
 // Darren Kearns Individual Assignment
-public class InventoryActor implements Serializable{
+public class InventoryField implements Serializable{
     
     public String description;
+    public int quantity;
 
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+    
     public String getDescription() {
         return description;
     }
