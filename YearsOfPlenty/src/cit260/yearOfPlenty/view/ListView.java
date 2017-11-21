@@ -29,9 +29,13 @@ import cit260.yearOfPlenty.control.GameControl;
  * 
  *
  */
-public class ListView {
+public class ListView extends View{
+
+    public ListView(String message) {
+        super("");
+    }
     
-    public static void displayListView(){
+    public void displayListView(){
        
      int option;
      int total=0;  
