@@ -45,7 +45,8 @@ public class GameMenuView extends View {
                 map.displayMapView();
             }
             else if (option==2){
-                ListView.displayListView();
+                ListView list = new ListView("");
+                list.displayListView();
             }
             else if (option==3){
                 this.newLocation();
