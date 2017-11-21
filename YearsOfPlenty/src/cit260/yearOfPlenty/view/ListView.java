@@ -44,20 +44,21 @@ public class ListView extends View{
         System.out.println("\nWhat list would you like to view?"
                            + "\n1-Livestock"
                            + "\n2-Tools"
+                           + "\n3-Fields"
                            + "\n5-Exit to Game Menu\n");
         
          //get input and validate
         do {
             option = this.getInput();
             
-            if (option <= 0 || option >= 3) {
+            if (option <= 0 || option >= 4) {
                 if (option == 5) {
                     System.out.println("Exiting to Game Menu...");
                 } else {
                     System.out.println("Please choose 1 or 2.");
                 }
             }
-        } while (option != 5 && option <= 0 && option >= 3);
+        } while (option != 5 && option <= 0 && option >= 4);
         
 //if user input 5, send them to the game menu
         if (option == 5) {
@@ -112,14 +113,13 @@ public class ListView extends View{
        System.out.println("Field List");
             InventoryField[] fields = GameControl.createField();
             //Calculate quantity of fields. 
-            for (int i=0; i<2; i++){
                for (InventoryField field : fields) {
                     total += field.quantity;
-                    System.out.println(field.description);
+                    System.out.println(field.description + " - " + field.quantity);
             }
           
-       }
-            System.out.println("You have a total of" + total + "Fields.");
+       
+            System.out.println("\nYou have a total of " + total + " Fields.");
  }
  
        

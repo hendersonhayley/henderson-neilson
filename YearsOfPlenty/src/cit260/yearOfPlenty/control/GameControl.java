@@ -141,7 +141,7 @@ public class GameControl {
         
         InventoryField CORN = new InventoryField();
         CORN.setDescription("Corn");
-        CORN.setQuantity(5);
+        CORN.setQuantity(3);
         fields[Field.CORN.ordinal()] = CORN;
         
         InventoryField WHEAT = new InventoryField();
@@ -151,7 +151,7 @@ public class GameControl {
         
         InventoryField BARLEY = new InventoryField();
         BARLEY.setDescription("Barley");
-        BARLEY.setQuantity(5);
+        BARLEY.setQuantity(9);
         fields[Field.BARLEY.ordinal()] = BARLEY;
     
         return fields;
