@@ -6,10 +6,13 @@
 package cit260.yearOfPlenty.view;
 
 import cit260.yearOfPlenty.Crops;
+import cit260.yearOfPlenty.GameInfoItem;
 import cit260.yearOfPlenty.Player;
+import cit260.yearOfPlenty.control.GameControl;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.IntStream;
 import yearsofplenty.YearsOfPlenty;
 
 /**
@@ -29,21 +32,33 @@ public class CropsView extends View{
     public void displayCropsView(){
         Crops theCropsObject = YearsOfPlenty.getCrops();
         
-        System.out.println("\n*** Current acres available to sell: " + theCropsObject.getAcres());
+        GameInfoItem[] updateItems = GameControl.createUpdateArray();
+        
+        System.out.println("\nGAME STATUS UPDATE: ");
+        
+        int i = 0;
+        int sum = 0;
+        int[] sumArray = new int[2];
+        for (GameInfoItem item : updateItems) {
+            if (i < 2) {
+                sumArray[i] = item.quantity;
+            }
+            i++;
+            System.out.println(item.description + " " + item.quantity);
+        }
+        
+        sum = IntStream.of(sumArray).sum();
+        System.out.println("Total acres and bushels combined: " + sum);
+        
         this.sellLand(theCropsObject);
         
-        System.out.println("\n*** Current bushels available to buy land: " + theCropsObject.getWheatInStore());
         this.buyLand(theCropsObject);
         
-        System.out.println("\n*** Current bushels available to feed the people with: " + theCropsObject.getWheatInStore());
         this.feedPeople(theCropsObject);
         
-        System.out.println("\n*** Current acres available to plant seeds with: " + theCropsObject.getAcres());
         this.plantCropsView(theCropsObject);
         
-        System.out.println("\n*** Current acres available to harvest: " + theCropsObject.getAcres());
-        this.harvestWheatView(theCropsObject);
-        
+        this.harvestWheatView(theCropsObject);   
         
     }
     

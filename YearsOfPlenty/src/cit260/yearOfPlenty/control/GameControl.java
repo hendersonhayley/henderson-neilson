@@ -8,6 +8,8 @@ package cit260.yearOfPlenty.control;
 import cit260.yearOfPlenty.Field;
 import cit260.yearOfPlenty.Crops;
 import cit260.yearOfPlenty.Game;
+import cit260.yearOfPlenty.GameInfo;
+import cit260.yearOfPlenty.GameInfoItem;
 import cit260.yearOfPlenty.InventoryField;
 import cit260.yearOfPlenty.InventoryItem;
 import cit260.yearOfPlenty.ItemType;
@@ -153,5 +155,35 @@ public class GameControl {
         fields[Field.BARLEY.ordinal()] = BARLEY;
     
         return fields;
+    }
+    
+    public static GameInfoItem[] createUpdateArray() {
+        GameInfoItem[] infoItems = new GameInfoItem[4];
+        
+        Crops crops = YearsOfPlenty.getCrops();
+        int numAcres = crops.getAcres();
+        int numBushels = crops.getWheatInStore();
+        
+        GameInfoItem ACRES = new GameInfoItem();
+        ACRES.setDescription("This is the amount of acres you currently have.");
+        ACRES.setQuantity(numAcres);
+        infoItems[GameInfo.ACRES.ordinal()] = ACRES;
+        
+        GameInfoItem BUSHELS = new GameInfoItem();
+        BUSHELS.setDescription("This is the amount of bushels you currently have.");
+        BUSHELS.setQuantity(numBushels);
+        infoItems[GameInfo.BUSHELS.ordinal()] = BUSHELS;
+        
+        GameInfoItem ACREPRICE = new GameInfoItem();
+        ACREPRICE.setDescription("This is how many bushels one acre of land costs.");
+        ACREPRICE.setQuantity(3);
+        infoItems[GameInfo.ACREPRICE.ordinal()] = ACREPRICE;
+        
+        GameInfoItem BUSHELRETURN = new GameInfoItem();
+        BUSHELRETURN.setDescription("This is how many bushels you will get for selling an acre of land.");
+        BUSHELRETURN.setQuantity(3);
+        infoItems[GameInfo.BUSHELRETURN.ordinal()] = BUSHELRETURN;
+        
+        return infoItems;
     }
 }
