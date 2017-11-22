@@ -17,7 +17,7 @@ import exceptions.MapControlException;
  */
 public class MapControl {
 
-    public static Map createMap(int noOfRows, int noOfColumns, InventoryItem[] items) throws MapControlException {
+    public static Map createMap(int noOfRows, int noOfColumns, InventoryItem[] items) {
         /* Algorithm
         if noOfRows < 0 OR numOfColumns < 0
         return null
@@ -38,11 +38,11 @@ public class MapControl {
         Map map = new Map();
         
         if (noOfRows <= 0 || noOfColumns <= 0) {
-            throw new MapControlException("There was an error creating the map. Map rows and columns must be greater than 0.");
+            System.out.println("There was an error creating the map. Map rows and columns must be greater than 0.");
         }
         
         if (items == null || items.length < 1) {
-            throw new MapControlException("There was an error creating the map. Items array was empty or null.");
+            System.out.println("There was an error creating the map. Items array was empty or null.");
         }
         Location[][] locations = MapControl.createLocations(noOfRows, noOfColumns);
         
@@ -57,10 +57,10 @@ public class MapControl {
         return map;
     }
     
-    public static Location[][] createLocations(int noOfRows, int noOfColumns) throws MapControlException {
+    public static Location[][] createLocations(int noOfRows, int noOfColumns) {
         
         if (noOfRows < 0 || noOfColumns < 0) {
-            throw new MapControlException("There was an error creating the locations. Map rows and columns must be greater than 0.");
+            System.out.println("There was an error creating the locations. Map rows and columns must be greater than 0.");
         }
         // Create locations array. Nested for loops to set locations in the array.
         Location[][] locations = new Location[noOfRows][noOfColumns];

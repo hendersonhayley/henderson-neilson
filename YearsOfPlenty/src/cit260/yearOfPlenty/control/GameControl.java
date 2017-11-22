@@ -92,13 +92,9 @@ public class GameControl {
         YearsOfPlenty.setItems(items);
         
         //Creating our map
-        Map map = null;
-        try {
-            map = MapControl.createMap(0, 2, items);
-        } catch (MapControlException me) {
-            //me.getMessage()
-            System.out.println("HELLO WORLD!!!!!!!!!!!!!!!!!!!!!!!!!");
-        }
+        Map map;
+        
+            map = MapControl.createMap(2, 2, items);
         
         if (map == null) {
             System.out.println("There was an error loading the map.");
