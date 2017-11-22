@@ -9,6 +9,7 @@ import cit260.yearOfPlenty.Game;
 import cit260.yearOfPlenty.InventoryItem;
 import cit260.yearOfPlenty.Location;
 import cit260.yearOfPlenty.Map;
+import exceptions.MapControlException;
 
 /**
  *
@@ -16,7 +17,7 @@ import cit260.yearOfPlenty.Map;
  */
 public class MapControl {
 
-    public static Map createMap(int noOfRows, int noOfColumns, InventoryItem[] items) {
+    public static Map createMap(int noOfRows, int noOfColumns, InventoryItem[] items) throws MapControlException {
         /* Algorithm
         if noOfRows < 0 OR numOfColumns < 0
         return null
@@ -33,17 +34,19 @@ public class MapControl {
        assignQuestionsToScenes()
        assignItemsToScenes() 
         */
-        if (noOfRows < 0 || noOfColumns < 0) {
-            System.out.println("\nThere was an error creating the map.");
+        //Initialize map
+        Map map = new Map();
+        
+        if (noOfRows <= 0 || noOfColumns <= 0) {
+            throw new MapControlException("There was an error creating the map. Map rows and columns must be greater than 0.");
         }
         
         if (items == null || items.length < 1) {
-            System.out.println("\nThere was an error loading items.");
+            throw new MapControlException("There was an error creating the map. Items array was empty or null.");
         }
         Location[][] locations = MapControl.createLocations(noOfRows, noOfColumns);
         
         //Saving things to our Map
-        Map map = new Map();
         map.setRowCount(noOfRows);
         map.setColCount(noOfColumns);
         map.setLocations(locations);
@@ -54,10 +57,10 @@ public class MapControl {
         return map;
     }
     
-    public static Location[][] createLocations(int noOfRows, int noOfColumns) {
+    public static Location[][] createLocations(int noOfRows, int noOfColumns) throws MapControlException {
         
         if (noOfRows < 0 || noOfColumns < 0) {
-            System.out.println("\nThere was an error creating the locations.");
+            throw new MapControlException("There was an error creating the locations. Map rows and columns must be greater than 0.");
         }
         // Create locations array. Nested for loops to set locations in the array.
         Location[][] locations = new Location[noOfRows][noOfColumns];

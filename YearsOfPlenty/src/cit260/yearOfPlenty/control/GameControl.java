@@ -15,6 +15,9 @@ import cit260.yearOfPlenty.InventoryItem;
 import cit260.yearOfPlenty.ItemType;
 import cit260.yearOfPlenty.Map;
 import cit260.yearOfPlenty.Player;
+import exceptions.MapControlException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import yearsofplenty.YearsOfPlenty;
 
 /**
@@ -89,7 +92,13 @@ public class GameControl {
         YearsOfPlenty.setItems(items);
         
         //Creating our map
-        Map map = MapControl.createMap(2, 2, items);
+        Map map = null;
+        try {
+            map = MapControl.createMap(0, 2, items);
+        } catch (MapControlException me) {
+            //me.getMessage()
+            System.out.println("HELLO WORLD!!!!!!!!!!!!!!!!!!!!!!!!!");
+        }
         
         if (map == null) {
             System.out.println("There was an error loading the map.");
