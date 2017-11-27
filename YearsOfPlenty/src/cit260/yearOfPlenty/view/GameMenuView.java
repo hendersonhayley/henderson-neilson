@@ -5,6 +5,8 @@
  */
 package cit260.yearOfPlenty.view;
 
+import exceptions.CropControlException;
+import exceptions.ListControlException;
 import java.util.Scanner;
 
 /**
@@ -13,6 +15,7 @@ import java.util.Scanner;
  */
 public class GameMenuView extends View {
     public static final int MAX = 5;
+    boolean paramsNotOkay;
     
     public GameMenuView() {
         super("\n*************************************"
@@ -44,10 +47,24 @@ public class GameMenuView extends View {
                 MapView map = new MapView("");
                 map.displayMapView();
             }
-            else if (option==2){
+            
+           
+             else if (option==2){
+         //setting up the control exceptions for listview
+    
+         do{
+            paramsNotOkay = false;
+            try {
                 ListView list = new ListView("");
                 list.displayListView();
+                 } catch(ListControlException e){
+            System.out.println(e.getMessage());
+            paramsNotOkay = true;
+        }
+        } while(paramsNotOkay);
             }
+             
+             
             else if (option==3){
                 this.newLocation();
             }

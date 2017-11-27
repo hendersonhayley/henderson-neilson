@@ -8,6 +8,8 @@ package cit260.yearOfPlenty.view;
 import cit260.yearOfPlenty.InventoryField;
 import cit260.yearOfPlenty.InventoryItem;
 import cit260.yearOfPlenty.control.GameControl;
+import exceptions.CropControlException;
+import exceptions.ListControlException;
 
 
 /**
@@ -36,7 +38,7 @@ public class ListView extends View{
         super("");
     }
     
-     public void displayListView(){
+     public void displayListView()throws ListControlException{
        
      int option;
      int total=0;  
@@ -49,13 +51,14 @@ public class ListView extends View{
         
          //get input and validate
         do {
+           
             option = this.getInput();
             
             if (option <= 0 || option >= 4) {
                 if (option == 5) {
                     System.out.println("Exiting to Game Menu...");
                 } else {
-                    System.out.println("Please choose 1 or 2.");
+                   throw new ListControlException("Please choose 1 - 3 or 5 To Exit.");
                 }
             }
         } while (option != 5 && option <= 0 && option >= 4);
