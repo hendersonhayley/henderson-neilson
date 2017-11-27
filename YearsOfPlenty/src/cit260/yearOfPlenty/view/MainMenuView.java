@@ -6,7 +6,7 @@
 package cit260.yearOfPlenty.view;
 
 import cit260.yearOfPlenty.control.GameControl;
-import java.util.Scanner;
+import exceptions.MenuControlException;
 import yearsofplenty.YearsOfPlenty;
 
 /**
@@ -14,6 +14,8 @@ import yearsofplenty.YearsOfPlenty;
  * @author Brennan.Neilson
  */
 public class MainMenuView extends View {
+    
+    boolean paramsNotOkay;
     
     public MainMenuView() {
         super("\n*************************************"
@@ -31,38 +33,51 @@ public class MainMenuView extends View {
     
     int option;
     
-    public void displayMainMenu() {
+    public void displayMainMenu() throws MenuControlException {
         this.display();
+        
+        //get input and validate
         do {
+           
             option = this.getInput();
-            if (option < 1 || option > 5) { //must be between 1 and 5
-                System.out.println("Invalid option: Please choose an option 1 - 5");
-            }
-            switch (option) {
-                case 1:
-                    MainMenuView.startNewGame();
-                    break;
-                case 2:
-                    MainMenuView.loadGame();
-                    break;
-                case 3:
-                    HelpMenuView helpMenuView = new HelpMenuView();
-                    helpMenuView.displayHelpMenu();
-                    break;
-                case 4:
-                    MainMenuView.saveGame();
-                    break;
-                case 5:
+            
+            if (option < 1 || option >= 5) {
+                //if user input 5, quit the game
+                if (option == 5) {
                     //goodbye message
                     System.out.println("Goodbye...Thanks for playing.");
                     System.exit(0);
-                default:
-                    break;
+                } else {
+                   throw new MenuControlException("Invalid option: Please choose an option 1 - 5");
+                }
             }
-        } while (option != 5);
+        } while (option != 5 && option <= 0 && option > 5);
+
+        switch (option) {
+            case 1:
+                MainMenuView.startNewGame();
+                break;
+            case 2:
+                MainMenuView.loadGame();
+                break;
+            case 3:
+                HelpMenuView helpMenuView = new HelpMenuView();
+                helpMenuView.displayHelpMenu();
+                break;
+            case 4:
+                MainMenuView.saveGame();
+                break;
+            case 5:
+                //goodbye message
+                System.out.println("Goodbye...Thanks for playing.");
+                System.exit(0);
+            default:
+                break;
+        }
+
     }
     
-    static void startNewGame() {
+    static void startNewGame() throws MenuControlException {
         System.out.println("Start New Game function called!");
         //create a new game
         GameControl.createNewGame(YearsOfPlenty.getPlayer());

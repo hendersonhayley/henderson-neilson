@@ -6,6 +6,7 @@
 package cit260.yearOfPlenty.view;
 
 import cit260.yearOfPlenty.control.GameControl;
+import exceptions.MenuControlException;
 import java.util.Scanner;
 
 /**
@@ -36,7 +37,7 @@ public class StartProgramView {
         );
     }
 
-    public void displayStartProgramView() {
+    public void displayStartProgramView() throws MenuControlException {
         /*displayView(): void
         BEGIN
         do
@@ -61,7 +62,7 @@ public class StartProgramView {
         
         displayNextView();
     }
-    public static void displayNextView() {
+    public static void displayNextView() throws MenuControlException {
         //System.out.println("\n *** displayNextView() called *** \n");
         //MainMenuView mainMenuView = new MainMenuView();
         //mainMenuView.display();

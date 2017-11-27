@@ -9,6 +9,7 @@ import cit260.yearOfPlenty.Game;
 import cit260.yearOfPlenty.Location;
 import cit260.yearOfPlenty.Map;
 import cit260.yearOfPlenty.control.MapControl;
+import exceptions.MenuControlException;
 import yearsofplenty.YearsOfPlenty;
 
 /**
@@ -17,11 +18,13 @@ import yearsofplenty.YearsOfPlenty;
  */
 public class MapView extends View{
     
+    boolean paramsNotOkay;
+    
     public MapView(String message) {
         super(message);
     }
     
-    public void displayMapView(){
+    public void displayMapView() throws MenuControlException{
         /*
             game = get the currentGame from the main class
             locations = get the 2-D locations array from the map
@@ -92,8 +95,16 @@ public class MapView extends View{
         } while (row != 5 && row <= 0 && row > locations.length);
         
         if (row == 5) {
-            GameMenuView gameMenu = new GameMenuView();
-            gameMenu.displayGameMenu();
+            do {
+                paramsNotOkay = false;
+                try {
+                    GameMenuView gameMenu = new GameMenuView();
+                    gameMenu.displayGameMenu();
+                } catch(MenuControlException e) {
+                    System.out.println(e.getMessage());
+                    paramsNotOkay = true;
+                }
+            } while(paramsNotOkay);
         }
         
         System.out.println("What column would you like to travel to?");

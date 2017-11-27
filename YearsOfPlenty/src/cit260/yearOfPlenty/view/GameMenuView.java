@@ -5,9 +5,8 @@
  */
 package cit260.yearOfPlenty.view;
 
-import exceptions.CropControlException;
 import exceptions.ListControlException;
-import java.util.Scanner;
+import exceptions.MenuControlException;
 
 /**
  *
@@ -33,16 +32,38 @@ public class GameMenuView extends View {
     
     int option;
 
-    public void displayGameMenu() {
+    public void displayGameMenu() throws MenuControlException {
         
         this.display();
         
+        //get input and validate
         do {
-            option = this.getInput();     //get the entered input
+           
+            option = this.getInput();
             
-            if(option<1 || option>MAX){
-                System.out.println("Invalid entry, Please choose an option of 1-5.");
+            if (option <= 0 || option >= 5) {
+                if (option == 5) {
+                    System.out.println("Exiting to Main Menu...");
+                } else {
+                   throw new MenuControlException("Invalid entry, Please choose an option of 1-5.");
+                }
             }
+        } while (option != 5 && option <= 0 && option > 5);
+        
+        //if user input 5, send them to the main menu
+        if (option == 5) {
+            do{
+                paramsNotOkay = false;
+                try {
+                    MainMenuView mainMenu = new MainMenuView();
+                    mainMenu.displayMainMenu();
+                } catch(MenuControlException e) {
+                    System.out.println(e.getMessage());
+                    paramsNotOkay = true;
+                }
+            } while(paramsNotOkay);
+        }
+            
             if (option==1){
                 MapView map = new MapView("");
                 map.displayMapView();
@@ -72,15 +93,10 @@ public class GameMenuView extends View {
                 CropsView CropsView = new CropsView();
                 CropsView.displayCropsView();
             }
-            else if (option==5){
-                MainMenuView MainMenuView = new MainMenuView();
-                MainMenuView.displayMainMenu();
-            }
-        } while (option!=MAX);
        
     }
     
-    public void newLocation(){
+    public void newLocation() throws MenuControlException{
         MapView map = new MapView("");
         map.displayMapView();
     }

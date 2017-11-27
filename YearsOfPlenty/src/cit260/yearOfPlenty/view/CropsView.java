@@ -10,6 +10,7 @@ import cit260.yearOfPlenty.GameInfoItem;
 import cit260.yearOfPlenty.Player;
 import cit260.yearOfPlenty.control.GameControl;
 import exceptions.CropControlException;
+import exceptions.MenuControlException;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -22,6 +23,8 @@ import yearsofplenty.YearsOfPlenty;
  */
 public class CropsView extends View{
     
+    boolean paramsNotOkay;
+    
     //public CropsView(String message) {
     //    super(message);
     //}
@@ -30,7 +33,7 @@ public class CropsView extends View{
         super("");
     }
     
-    public void displayCropsView(){
+    public void displayCropsView() throws MenuControlException{
         
         boolean paramsNotOkay;
         
@@ -235,7 +238,7 @@ public class CropsView extends View{
             System.out.println("\nYou have chosen to plant " + toPlant + " acres of land.");         
     }
     
-    public void harvestWheatView(Crops theCropsObject) throws CropControlException{
+    public void harvestWheatView(Crops theCropsObject) throws CropControlException, MenuControlException{
         
         int amount;
         int newAcres;
@@ -260,8 +263,16 @@ public class CropsView extends View{
             
         System.out.println("\nYou have chosen to harvest " + amount + " acres of land.");
         
-        GameMenuView gameMenuView = new GameMenuView();
-        gameMenuView.displayGameMenu();
+        do {
+            paramsNotOkay = false;
+            try {
+                GameMenuView gameMenu = new GameMenuView();
+                gameMenu.displayGameMenu();
+            } catch(MenuControlException e) {
+                System.out.println(e.getMessage());
+                paramsNotOkay = true;
+            }
+        } while(paramsNotOkay);
     }
     
 }   

@@ -10,6 +10,7 @@ import cit260.yearOfPlenty.InventoryItem;
 import cit260.yearOfPlenty.control.GameControl;
 import exceptions.CropControlException;
 import exceptions.ListControlException;
+import exceptions.MenuControlException;
 
 
 /**
@@ -33,12 +34,13 @@ import exceptions.ListControlException;
  *
  */
 public class ListView extends View{
+    boolean paramsNotOkay;
 
     public ListView(String message) {
         super("");
     }
     
-     public void displayListView()throws ListControlException{
+     public void displayListView()throws ListControlException, MenuControlException{
        
      int option;
      int total=0;  
@@ -65,8 +67,16 @@ public class ListView extends View{
         
 //if user input 5, send them to the game menu
         if (option == 5) {
-            GameMenuView gameMenu = new GameMenuView();
-            gameMenu.displayGameMenu();
+            do{
+                paramsNotOkay = false;
+                try {
+                    GameMenuView gameMenu = new GameMenuView();
+                    gameMenu.displayGameMenu();
+                } catch(MenuControlException e) {
+                    System.out.println(e.getMessage());
+                    paramsNotOkay = true;
+                }
+            } while(paramsNotOkay);
         }
   //if user enters 1, the livestock list will display
        if (option == 1) {
