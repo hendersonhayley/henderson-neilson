@@ -5,6 +5,7 @@
  */
 package cit260.yearOfPlenty.view;
 
+import exceptions.MenuControlException;
 import java.util.Scanner;
 
 /**
@@ -12,6 +13,8 @@ import java.util.Scanner;
  * @author Brennan.Neilson
  */
 public class HelpMenuView extends View {
+    
+    boolean paramsNotOkay;
     
     public HelpMenuView() {
         super("\n*******************************************************************************"
@@ -29,16 +32,37 @@ public class HelpMenuView extends View {
     
     int option;
 
-    public void displayHelpMenu() {
+    public void displayHelpMenu() throws MenuControlException {
         
         this.display();
         
+        //get input and validate
         do {
-            System.out.println("Enter 5 to Exit to Main Menu: ");
+           
             option = this.getInput();
-        } while (option != 5);
-        MainMenuView mainMenuView = new MainMenuView();
-        mainMenuView.display();
+            
+            if (option <= 0 || option >= 5) {
+                if (option == 5) {
+                    System.out.println("Exiting to Main Menu.");
+                } else {
+                   throw new MenuControlException("Invalid entry, Enter 5 to exit to Main Menu: ");
+                }
+            }
+        } while (option != 5 && option <= 0 && option > 5);
+        
+        //if user input 5, send them back to the main menu
+        if (option == 5) {
+            do{
+                paramsNotOkay = false;
+                try {
+                    MainMenuView mainMenu = new MainMenuView();
+                    mainMenu.displayMainMenu();
+                } catch(MenuControlException e) {
+                    System.out.println(e.getMessage());
+                    paramsNotOkay = true;
+                }
+            } while(paramsNotOkay);
+        }
         
     }
     
