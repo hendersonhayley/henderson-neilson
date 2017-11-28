@@ -41,7 +41,7 @@ public class HelpMenuView extends View {
            
             option = this.getInput();
             
-            if (option <= 0 || option >= 5) {
+            if (option <= 0 || option <=4 || option >= 5) {
                 if (option == 5) {
                     System.out.println("Exiting to Main Menu.");
                 } else {
@@ -62,6 +62,7 @@ public class HelpMenuView extends View {
                     paramsNotOkay = true;
                 }
             } while(paramsNotOkay);
+
         }
         
     }
