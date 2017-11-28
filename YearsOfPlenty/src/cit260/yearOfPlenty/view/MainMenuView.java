@@ -51,7 +51,7 @@ public class MainMenuView extends View {
                    throw new MenuControlException("Invalid option: Please choose an option 1 - 5");
                 }
             }
-        } while (option != 5 && option <= 0 && option > 5);
+        } while (option != 5 && option < 1 && option > 5);
 
         switch (option) {
             case 1:
@@ -83,8 +83,19 @@ public class MainMenuView extends View {
         GameControl.createNewGame(YearsOfPlenty.getPlayer());
         
         //display the game menu
-        GameMenuView gameMenu = new GameMenuView();
-        gameMenu.displayGameMenu();
+        boolean paramsNotOkay;
+
+        do{
+            paramsNotOkay = false;
+            try {
+                GameMenuView gameMenu = new GameMenuView();
+                gameMenu.displayGameMenu();
+            } catch(MenuControlException e) {
+                System.out.println(e.getMessage());
+                paramsNotOkay = true;
+            }
+        } while(paramsNotOkay);
+
     }
     
     static void loadGame() {

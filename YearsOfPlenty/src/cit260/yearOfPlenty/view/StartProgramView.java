@@ -63,12 +63,21 @@ public class StartProgramView {
         displayNextView();
     }
     public static void displayNextView() throws MenuControlException {
+        boolean paramsNotOkay;
         //System.out.println("\n *** displayNextView() called *** \n");
         //MainMenuView mainMenuView = new MainMenuView();
         //mainMenuView.display();
         //mainMenuView.getInput();
-        MainMenuView MainMenuView = new MainMenuView();
-        MainMenuView.displayMainMenu();
+        do{
+            paramsNotOkay = false;
+            try {
+                MainMenuView MainMenuView = new MainMenuView();
+                MainMenuView.displayMainMenu();
+            } catch(MenuControlException e) {
+                System.out.println(e.getMessage());
+                paramsNotOkay = true;
+            }
+        } while(paramsNotOkay);
         //control returns to this point when user exits to main menu
     }
 

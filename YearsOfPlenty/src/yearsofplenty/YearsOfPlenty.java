@@ -12,6 +12,7 @@ import cit260.yearOfPlenty.Game;
 import cit260.yearOfPlenty.Location;
 import cit260.yearOfPlenty.InventoryItem;
 import cit260.yearOfPlenty.view.StartProgramView;
+import exceptions.MenuControlException;
 
 
 /**
@@ -59,8 +60,9 @@ public class YearsOfPlenty {
     }
     /**
      * @param args the command line arguments
+     * @throws exceptions.MenuControlException
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws MenuControlException {
         StartProgramView startProgramView=new StartProgramView();
         startProgramView.displayStartProgramView();
     }
