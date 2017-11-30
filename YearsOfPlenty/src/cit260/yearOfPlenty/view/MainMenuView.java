@@ -49,6 +49,7 @@ public class MainMenuView extends View {
                     System.exit(0);
                 } else {
                    ErrorView.display(this.getClass().getName(),"Invalid option: Please choose an option 1 - 5");
+                   this.displayMainMenu();
                 }
             }
         } while (option != 5 && option < 1 && option > 5);

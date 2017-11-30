@@ -46,6 +46,7 @@ public class HelpMenuView extends View {
                     this.console.println("Exiting to Main Menu.");
                 } else {
                    ErrorView.display(this.getClass().getName(),"Invalid entry, Enter 5 to exit to Main Menu: ");
+                   this.displayHelpMenu();
                 }
             }
         } while (option != 5 && option <= 0 && option > 5);

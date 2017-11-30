@@ -126,9 +126,11 @@ public class CropsView extends View{
         amount = keyboard.nextInt();
         if (amount < 0) {
             ErrorView.display(this.getClass().getName(),"\nPlease enter a positive value.");
+            this.sellLand(theCropsObject);
             
         } else if (amount > currentLand) {
             ErrorView.display(this.getClass().getName(),"\nYou don't have that much land to sell. Try again.");
+            this.sellLand(theCropsObject);
             
         } else {
             int newLand = currentLand - amount;
@@ -153,6 +155,7 @@ public class CropsView extends View{
         amount = keyboard.nextInt();
         if (amount < 0) {
             ErrorView.display(this.getClass().getName(),"\nPlease enter a positive value.");
+            this.buyLand(theCropsObject);
             //System.out.println("\nPlease enter a positive value.");
             //CropsView.buyLand(theCropsObject);
         } else {
@@ -175,6 +178,7 @@ public class CropsView extends View{
         
         if (bushelsOfGrain < 0) {
             ErrorView.display(this.getClass().getName(),"\nPlease enter a positive value.");
+            this.feedPeople(theCropsObject);
             
         } else {
             int currentBushels = theCropsObject.getWheatInStore();
@@ -220,10 +224,12 @@ public class CropsView extends View{
                 if(toPlant < 0){
                     System.out.println("\nI am sorry master, I cannot do this.");
                     ErrorView.display(this.getClass().getName(),"\nPlease enter a positive value.");
+                    this.plantCropsView(theCropsObject);
                 }
                 else if(toPlant > currentAcres){
                     System.out.println("\nI am sorry master, I cannot do this.");
                    ErrorView.display(this.getClass().getName(),"\nYou cannot plant more acres than you own.");
+                   this.plantCropsView(theCropsObject);
                 }
             }    
             while(toPlant < 0 || toPlant > currentAcres);    
@@ -250,9 +256,11 @@ public class CropsView extends View{
             
             if (amount < 0){
                 ErrorView.display(this.getClass().getName(),"\nPlease enter a positive value.");
+                this.harvestWheatView(theCropsObject);
             }
             else if(amount > currentAcres){
                 ErrorView.display(this.getClass().getName(),"\nI am sorry, you cannot harvest more acres than you own.");
+                this.harvestWheatView(theCropsObject);
             }
         }
         while(amount < 0 || amount > currentAcres);

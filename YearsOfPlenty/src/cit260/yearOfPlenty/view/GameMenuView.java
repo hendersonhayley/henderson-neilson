@@ -46,6 +46,7 @@ public class GameMenuView extends View {
                     this.console.println("Exiting to Main Menu...");
                 } else {
                    ErrorView.display(this.getClass().getName(),"Invalid entry, Please choose an option of 1-5.");
+                   this.displayGameMenu();
                 }
             }
         } while (option != 5 && option <= 0 && option > 5);

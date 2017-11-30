@@ -14,6 +14,7 @@ import cit260.yearOfPlenty.InventoryItem;
 import cit260.yearOfPlenty.view.StartProgramView;
 import exceptions.MenuControlException;
 import java.io.BufferedReader;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
@@ -108,7 +109,8 @@ public class YearsOfPlenty {
         
             //Open Log File
             String filePath = "log.txt";
-            YearsOfPlenty.logFile = new PrintWriter(filePath);
+            FileOutputStream log = new FileOutputStream(filePath);
+            YearsOfPlenty.logFile = new PrintWriter(log, true);
         
         
         StartProgramView startProgramView=new StartProgramView();

@@ -61,6 +61,7 @@ public class ListView extends View{
                     this.console.println("Exiting to Game Menu...");
                 } else {
                    ErrorView.display(this.getClass().getName(),"Please choose 1 - 3 or 5 To Exit.");
+                   this.displayListView();
                 }
             }
         } while (option != 5 && option <= 0 && option >= 4);
