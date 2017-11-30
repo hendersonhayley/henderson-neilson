@@ -45,31 +45,33 @@ public class MainMenuView extends View {
                 //if user input 5, quit the game
                 if (option == 5) {
                     //goodbye message
-                    System.out.println("Goodbye...Thanks for playing.");
+                    this.console.println("Goodbye...Thanks for playing.");
                     System.exit(0);
                 } else {
-                   throw new MenuControlException("Invalid option: Please choose an option 1 - 5");
+                   ErrorView.display(this.getClass().getName(),"Invalid option: Please choose an option 1 - 5");
                 }
             }
         } while (option != 5 && option < 1 && option > 5);
 
-        switch (option) {
+         MainMenuView mainMenuView= new MainMenuView();
+       
+         switch (option) {
             case 1:
-                MainMenuView.startNewGame();
+                mainMenuView.startNewGame();
                 break;
             case 2:
-                MainMenuView.loadGame();
+                mainMenuView.loadGame();
                 break;
             case 3:
                 HelpMenuView helpMenuView = new HelpMenuView();
                 helpMenuView.displayHelpMenu();
                 break;
             case 4:
-                MainMenuView.saveGame();
+                mainMenuView.saveGame();
                 break;
             case 5:
                 //goodbye message
-                System.out.println("Goodbye...Thanks for playing.");
+                this.console.println("Goodbye...Thanks for playing.");
                 System.exit(0);
             default:
                 break;
@@ -77,8 +79,8 @@ public class MainMenuView extends View {
 
     }
     
-    static void startNewGame() throws MenuControlException {
-        System.out.println("Start New Game function called!");
+    public void startNewGame() throws MenuControlException {
+        this.console.println("Start New Game function called!");
         //create a new game
         GameControl.createNewGame(YearsOfPlenty.getPlayer());
         
@@ -91,19 +93,19 @@ public class MainMenuView extends View {
                 GameMenuView gameMenu = new GameMenuView();
                 gameMenu.displayGameMenu();
             } catch(MenuControlException e) {
-                System.out.println(e.getMessage());
+                ErrorView.display(this.getClass().getName(),e.getMessage());
                 paramsNotOkay = true;
             }
         } while(paramsNotOkay);
 
     }
     
-    static void loadGame() {
-        System.out.println("Load Saved Game function called!");
+    public void loadGame() {
+        this.console.println("Load Saved Game function called!");
     }
     
-    static void saveGame() {
-        System.out.println("Save This Game function called!");
+    public void saveGame() {
+        this.console.println("Save This Game function called!");
     }
     
 }

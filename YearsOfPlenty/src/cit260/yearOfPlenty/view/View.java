@@ -5,7 +5,10 @@
  */
 package cit260.yearOfPlenty.view;
 
+import java.io.BufferedReader;
+import java.io.PrintWriter;
 import java.util.Scanner;
+import yearsofplenty.YearsOfPlenty;
 
 /**
  *
@@ -14,6 +17,8 @@ import java.util.Scanner;
 public abstract class View implements ViewInterface {
     
     protected String displayMessage;
+    protected final BufferedReader keyboard = YearsOfPlenty.getInFile();
+    protected final PrintWriter console = YearsOfPlenty.getOutFile();
     
     public View(String message) {
         this.displayMessage = message;
@@ -22,7 +27,7 @@ public abstract class View implements ViewInterface {
     @Override
     public void display() {
         
-        System.out.println(this.displayMessage);
+        this.console.println(this.displayMessage);
         
     }
 
@@ -32,7 +37,7 @@ public abstract class View implements ViewInterface {
         Scanner keyboard = new Scanner(System.in);
         int option;
         
-        System.out.println("Please enter a number.");
+        this.console.println("Please enter a number.");
         option = keyboard.nextInt();
             
         return option;

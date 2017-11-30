@@ -13,18 +13,20 @@ import java.util.Scanner;
  *
  * @author Darren
  */
-public class StartProgramView {
+public class StartProgramView extends View{
     
     private String promptMessage;
     
     public StartProgramView() {
+        super("");
         this.promptMessage="\nPlease enter your name: ";
         //Display the banner when view created.
         this.displayBanner();
+        
     }
 
     private void displayBanner() {
-        System.out.println(
+        this.console.println(
                 "\n**********************************************"
               + "\n*                                            *"
               + "\n* This is the game of Year of Plenty         *"
@@ -55,10 +57,10 @@ public class StartProgramView {
         
         GameControl.createCrops();
         
-        System.out.println("\n\n\n\n");
-        System.out.println(playerName + ", you have been appointed overseer for your");
-        System.out.println("village. Tread carefully, if your people are not fed well");
-        System.out.println("you may lose your head.");
+        this.console.println("\n\n\n\n");
+        this.console.println(playerName + ", you have been appointed overseer for your");
+        this.console.println("village. Tread carefully, if your people are not fed well");
+        this.console.println("you may lose your head.");
         
         displayNextView();
     }
@@ -86,7 +88,7 @@ public class StartProgramView {
         String playerName = ""; //value to be returned
         
         do {
-            System.out.println("\n" + this.promptMessage);
+            this.console.println("\n" + this.promptMessage);
             
             playerName = keyboard.nextLine(); //get next line typed on keyboard
             playerName = playerName.trim(); //trim off leading and trailing blanks

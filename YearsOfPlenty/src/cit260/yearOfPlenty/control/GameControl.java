@@ -15,6 +15,7 @@ import cit260.yearOfPlenty.InventoryItem;
 import cit260.yearOfPlenty.ItemType;
 import cit260.yearOfPlenty.Map;
 import cit260.yearOfPlenty.Player;
+import cit260.yearOfPlenty.view.ErrorView;
 import exceptions.MapControlException;
 import java.util.logging.Level;
 import java.util.logging.Logger;

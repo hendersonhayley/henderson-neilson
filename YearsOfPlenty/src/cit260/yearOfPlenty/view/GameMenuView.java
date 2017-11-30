@@ -43,9 +43,9 @@ public class GameMenuView extends View {
             
             if (option <= 0 || option >= 5) {
                 if (option == 5) {
-                    System.out.println("Exiting to Main Menu...");
+                    this.console.println("Exiting to Main Menu...");
                 } else {
-                   throw new MenuControlException("Invalid entry, Please choose an option of 1-5.");
+                   ErrorView.display(this.getClass().getName(),"Invalid entry, Please choose an option of 1-5.");
                 }
             }
         } while (option != 5 && option <= 0 && option > 5);
@@ -58,7 +58,7 @@ public class GameMenuView extends View {
                     MainMenuView mainMenu = new MainMenuView();
                     mainMenu.displayMainMenu();
                 } catch(MenuControlException e) {
-                    System.out.println(e.getMessage());
+                   ErrorView.display(this.getClass().getName(),e.getMessage());
                     paramsNotOkay = true;
                 }
             } while(paramsNotOkay);
@@ -79,7 +79,7 @@ public class GameMenuView extends View {
                 ListView list = new ListView("");
                 list.displayListView();
                  } catch(ListControlException e){
-            System.out.println(e.getMessage());
+            ErrorView.display(this.getClass().getName(),e.getMessage());
             paramsNotOkay = true;
         }
         } while(paramsNotOkay);

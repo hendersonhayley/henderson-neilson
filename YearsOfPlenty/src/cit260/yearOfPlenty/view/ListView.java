@@ -45,7 +45,7 @@ public class ListView extends View{
      int option;
      int total=0;  
       
-        System.out.println("\nWhat list would you like to view?"
+        this.console.println("\nWhat list would you like to view?"
                            + "\n1-Livestock"
                            + "\n2-Tools"
                            + "\n3-Fields"
@@ -58,9 +58,9 @@ public class ListView extends View{
             
             if (option <= 0 || option >= 4) {
                 if (option == 5) {
-                    System.out.println("Exiting to Game Menu...");
+                    this.console.println("Exiting to Game Menu...");
                 } else {
-                   throw new ListControlException("Please choose 1 - 3 or 5 To Exit.");
+                   ErrorView.display(this.getClass().getName(),"Please choose 1 - 3 or 5 To Exit.");
                 }
             }
         } while (option != 5 && option <= 0 && option >= 4);
@@ -73,14 +73,14 @@ public class ListView extends View{
                     GameMenuView gameMenu = new GameMenuView();
                     gameMenu.displayGameMenu();
                 } catch(MenuControlException e) {
-                    System.out.println(e.getMessage());
+                    ErrorView.display(this.getClass().getName(),e.getMessage());
                     paramsNotOkay = true;
                 }
             } while(paramsNotOkay);
         }
   //if user enters 1, the livestock list will display
        if (option == 1) {
-           System.out.println("Livestock List");
+           this.console.println("Livestock List");
         //  
          InventoryItem[] items = GameControl.createItems();
          
@@ -90,11 +90,11 @@ public class ListView extends View{
               /* for (*/InventoryItem n = items[i]; 
                    
                     total += n.quantity;
-                   System.out.println(n.description);
+                   this.console.println(n.description);
                       
          
   }
-          System.out.println("\nYou have a total of " + total + " livestock.");
+          this.console.println("\nYou have a total of " + total + " livestock.");
           
           
   }
@@ -102,7 +102,7 @@ public class ListView extends View{
  
        //if user enter 2 the tools list will display     
        if (option == 2){
-  System.out.println("Tools List");
+  this.console.println("Tools List");
            InventoryItem[] items = GameControl.createItems();
    
 //this adds up the total quantity for all the tools        
@@ -111,28 +111,28 @@ public class ListView extends View{
                InventoryItem n = items[i];
                
                     total += n.quantity;
-                    System.out.println(n.description);
+                    this.console.println(n.description);
   
   
   }
-          System.out.println("\nYou have a total of " + total + " Tools.");
-                  System.out.println("\nExiting to Game Menu...");
+          this.console.println("\nYou have a total of " + total + " Tools.");
+                  this.console.println("\nExiting to Game Menu...");
   
  } 
 
           
        // if user enters 3 the fields list will display. Darren Kearns
        if (option == 3){
-       System.out.println("Field List");
+       this.console.println("Field List");
             InventoryField[] fields = GameControl.createField();
             //Calculate quantity of fields. 
                for (InventoryField field : fields) {
                     total += field.quantity;
-                    System.out.println(field.description + " - " + field.quantity);
+                    this.console.println(field.description + " - " + field.quantity);
             }
           
        
-            System.out.println("\nYou have a total of " + total + " Fields.");
+            this.console.println("\nYou have a total of " + total + " Fields.");
  }
  
        

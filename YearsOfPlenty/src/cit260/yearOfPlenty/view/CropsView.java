@@ -41,7 +41,7 @@ public class CropsView extends View{
         
         GameInfoItem[] updateItems = GameControl.createUpdateArray();
         
-        System.out.println("\nGAME STATUS UPDATE: ");
+        this.console.println("\nGAME STATUS UPDATE: ");
         
         int i = 0;
         int sum = 0;
@@ -51,11 +51,11 @@ public class CropsView extends View{
                 sumArray[i] = item.getQuantity();
             }
             i++;
-            System.out.println(item.getDescription() + " " + item.getQuantity());
+            this.console.println(item.getDescription() + " " + item.getQuantity());
         }
         
         sum = IntStream.of(sumArray).sum();
-        System.out.println("Total acres and bushels combined: " + sum);
+        this.console.println("Total acres and bushels combined: " + sum);
         
         //setting up error handling for sellLand
         do{
@@ -63,7 +63,7 @@ public class CropsView extends View{
             try {
             this.sellLand(theCropsObject);
         } catch(CropControlException e){
-            System.out.println(e.getMessage());
+            ErrorView.display(this.getClass().getName(),e.getMessage());
             paramsNotOkay = true;
         }
         } while(paramsNotOkay);
@@ -74,7 +74,7 @@ public class CropsView extends View{
             try {
             this.buyLand(theCropsObject);
         } catch(CropControlException e){
-            System.out.println(e.getMessage());
+            ErrorView.display(this.getClass().getName(),e.getMessage());
             paramsNotOkay = true;
         }
         } while(paramsNotOkay);
@@ -85,7 +85,7 @@ public class CropsView extends View{
             try {
             this.feedPeople(theCropsObject);
         } catch(CropControlException e){
-            System.out.println(e.getMessage());
+            ErrorView.display(this.getClass().getName(),e.getMessage());
             paramsNotOkay = true;
         }
         } while(paramsNotOkay);
@@ -96,7 +96,7 @@ public class CropsView extends View{
             try {
             this.plantCropsView(theCropsObject);
         } catch(CropControlException e){
-            System.out.println(e.getMessage());
+            ErrorView.display(this.getClass().getName(),e.getMessage());
             paramsNotOkay = true;
         }
         } while(paramsNotOkay);
@@ -107,7 +107,7 @@ public class CropsView extends View{
             try {
             this.harvestWheatView(theCropsObject);
         } catch(CropControlException e){
-            System.out.println(e.getMessage());
+            ErrorView.display(this.getClass().getName(),e.getMessage());
             paramsNotOkay = true;
         }
         } while(paramsNotOkay);
@@ -115,20 +115,20 @@ public class CropsView extends View{
         
     }
     
-    static void sellLand(Crops theCropsObject) throws CropControlException{
+    public void sellLand(Crops theCropsObject) throws CropControlException{
         Scanner keyboard = new Scanner(System.in);
         int amount;
         int currentLand = theCropsObject.getAcres();
         int wheatPerAcre = theCropsObject.getHarvest();
         int currentWheat = theCropsObject.getWheatInStore();
-        System.out.println("\nHow many acres of new land do you want to sell?");
+        this.console.println("\nHow many acres of new land do you want to sell?");
         
         amount = keyboard.nextInt();
         if (amount < 0) {
-            throw new CropControlException("\nPlease enter a positive value.");
+            ErrorView.display(this.getClass().getName(),"\nPlease enter a positive value.");
             
         } else if (amount > currentLand) {
-            throw new CropControlException("\nYou don't have that much land to sell. Try again.");
+            ErrorView.display(this.getClass().getName(),"\nYou don't have that much land to sell. Try again.");
             
         } else {
             int newLand = currentLand - amount;
@@ -137,22 +137,22 @@ public class CropsView extends View{
             
             theCropsObject.setAcres(newLand);
             theCropsObject.setWheatInStore(newWheat);
-            System.out.println("\nSuccess. You gained " + wheatYield + " bushels of wheat and you now have " + newLand + " acres available, as well as " + newWheat + " bushels in your stores.");
+            this.console.println("\nSuccess. You gained " + wheatYield + " bushels of wheat and you now have " + newLand + " acres available, as well as " + newWheat + " bushels in your stores.");
 
         }
         
     }
-    static void buyLand(Crops theCropsObject) throws CropControlException{
+    public void buyLand(Crops theCropsObject) throws CropControlException{
         Scanner keyboard = new Scanner(System.in);
         int amount;
         int currentLand = theCropsObject.getAcres();
         int wheatPerAcre = theCropsObject.getHarvest();
         int currentWheat = theCropsObject.getWheatInStore();
-        System.out.println("\nHow many acres of new land do you want to buy?");
+        this.console.println("\nHow many acres of new land do you want to buy?");
         
         amount = keyboard.nextInt();
         if (amount < 0) {
-            throw new CropControlException("\nPlease enter a positive value.");
+            ErrorView.display(this.getClass().getName(),"\nPlease enter a positive value.");
             //System.out.println("\nPlease enter a positive value.");
             //CropsView.buyLand(theCropsObject);
         } else {
@@ -162,7 +162,7 @@ public class CropsView extends View{
             
             theCropsObject.setAcres(newLand);
             theCropsObject.setWheatInStore(newWheat);
-            System.out.println("\nSuccess. You now have " + newLand + " acres of land. and you lost " + wheatYield + " bushels of wheat. You now have " + newWheat + " bushels in your stores.");
+            this.console.println("\nSuccess. You now have " + newLand + " acres of land. and you lost " + wheatYield + " bushels of wheat. You now have " + newWheat + " bushels in your stores.");
 
         }
         
@@ -174,7 +174,7 @@ public class CropsView extends View{
         int bushelsOfGrain = this.getInput();
         
         if (bushelsOfGrain < 0) {
-            throw new CropControlException("\nPlease enter a positive value.");
+            ErrorView.display(this.getClass().getName(),"\nPlease enter a positive value.");
             
         } else {
             int currentBushels = theCropsObject.getWheatInStore();
@@ -190,7 +190,7 @@ public class CropsView extends View{
             int newBushels = currentBushels + bushelsOfGrain;
             theCropsObject.setWheatInStore(newBushels);
             
-            System.out.println("\nSuccess. You fed " + bushelsOfGrain + " bushels to the people.");
+            this.console.println("\nSuccess. You fed " + bushelsOfGrain + " bushels to the people.");
             
             
         }
@@ -208,7 +208,7 @@ public class CropsView extends View{
             int newAcres;
             int currentAcres = theCropsObject.getAcres();  //get the amount of acres they have
             
-            System.out.println("\nHow many acres of land do you want to plant with seed?");
+            this.console.println("\nHow many acres of land do you want to plant with seed?");
             
             
             
@@ -219,11 +219,11 @@ public class CropsView extends View{
                 //calls getInput method in view superclass
                 if(toPlant < 0){
                     System.out.println("\nI am sorry master, I cannot do this.");
-                    throw new CropControlException("\nPlease enter a positive value.");
+                    ErrorView.display(this.getClass().getName(),"\nPlease enter a positive value.");
                 }
                 else if(toPlant > currentAcres){
                     System.out.println("\nI am sorry master, I cannot do this.");
-                   throw new CropControlException("\nYou cannot plant more acres than you own.");
+                   ErrorView.display(this.getClass().getName(),"\nYou cannot plant more acres than you own.");
                 }
             }    
             while(toPlant < 0 || toPlant > currentAcres);    
@@ -235,7 +235,7 @@ public class CropsView extends View{
             theCropsObject.setAcres(newAcres);
             theCropsObject.setPlanted(toPlant);
             
-            System.out.println("\nYou have chosen to plant " + toPlant + " acres of land.");         
+            this.console.println("\nYou have chosen to plant " + toPlant + " acres of land.");         
     }
     
     public void harvestWheatView(Crops theCropsObject) throws CropControlException, MenuControlException{
@@ -243,16 +243,16 @@ public class CropsView extends View{
         int amount;
         int newAcres;
         int currentAcres = theCropsObject.getAcres();
-        System.out.println("\nHow many acres do you want to harvest?");
+        this.console.println("\nHow many acres do you want to harvest?");
         
         do{
             amount = this.getInput();
             
             if (amount < 0){
-                throw new CropControlException("\nPlease enter a positive value.");
+                ErrorView.display(this.getClass().getName(),"\nPlease enter a positive value.");
             }
             else if(amount > currentAcres){
-                throw new CropControlException("\nI am sorry, you cannot harvest more acres than you own.");
+                ErrorView.display(this.getClass().getName(),"\nI am sorry, you cannot harvest more acres than you own.");
             }
         }
         while(amount < 0 || amount > currentAcres);
@@ -261,7 +261,7 @@ public class CropsView extends View{
             theCropsObject.setAcres(newAcres);
             theCropsObject.setHarvest(amount);
             
-        System.out.println("\nYou have chosen to harvest " + amount + " acres of land.");
+        this.console.println("\nYou have chosen to harvest " + amount + " acres of land.");
         
         do {
             paramsNotOkay = false;

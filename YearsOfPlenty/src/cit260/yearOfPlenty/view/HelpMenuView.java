@@ -43,9 +43,9 @@ public class HelpMenuView extends View {
             
             if (option <= 4 || option >= 5) {
                 if (option == 5) {
-                    System.out.println("Exiting to Main Menu.");
+                    this.console.println("Exiting to Main Menu.");
                 } else {
-                   throw new MenuControlException("Invalid entry, Enter 5 to exit to Main Menu: ");
+                   ErrorView.display(this.getClass().getName(),"Invalid entry, Enter 5 to exit to Main Menu: ");
                 }
             }
         } while (option != 5 && option <= 0 && option > 5);
@@ -58,7 +58,7 @@ public class HelpMenuView extends View {
                     MainMenuView mainMenu = new MainMenuView();
                     mainMenu.displayMainMenu();
                 } catch(MenuControlException e) {
-                    System.out.println(e.getMessage());
+                    ErrorView.display(this.getClass().getName(),e.getMessage());
                     paramsNotOkay = true;
                 }
             } while(paramsNotOkay);

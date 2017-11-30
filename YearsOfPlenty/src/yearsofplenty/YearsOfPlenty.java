@@ -13,6 +13,12 @@ import cit260.yearOfPlenty.Location;
 import cit260.yearOfPlenty.InventoryItem;
 import cit260.yearOfPlenty.view.StartProgramView;
 import exceptions.MenuControlException;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 /**
@@ -26,6 +32,35 @@ public class YearsOfPlenty {
     private static Crops crops = null;
     private static InventoryItem[] items = null;
     private static Map map = null;
+    
+    private static PrintWriter outFile = null;
+    private static BufferedReader inFile = null;
+    private static PrintWriter logFile = null;
+
+    public static PrintWriter getLogFile() {
+        return logFile;
+    }
+
+    public static void setLogFile(PrintWriter logFile) {
+        YearsOfPlenty.logFile = logFile;
+    }
+
+    public static PrintWriter getOutFile() {
+        return outFile;
+    }
+
+    public static void setOutFile(PrintWriter outFile) {
+        YearsOfPlenty.outFile = outFile;
+    }
+
+    public static BufferedReader getInFile() {
+        return inFile;
+    }
+
+    public static void setInFile(BufferedReader inFile) {
+        YearsOfPlenty.inFile = inFile;
+    }
+    
 
     public static Map getMap() {
         return map;
@@ -63,9 +98,47 @@ public class YearsOfPlenty {
      * @throws exceptions.MenuControlException
      */
     public static void main(String[] args) throws MenuControlException {
+        try {
+            // Open character stream files for end user input and output
+            
+            YearsOfPlenty.inFile = new BufferedReader(new InputStreamReader (System.in));
+            
+            YearsOfPlenty.outFile = new PrintWriter(System.out, true);
+       
+        
+            //Open Log File
+            String filePath = "log.txt";
+            YearsOfPlenty.logFile = new PrintWriter(filePath);
+        
+        
         StartProgramView startProgramView=new StartProgramView();
         startProgramView.displayStartProgramView();
+    return;
+    
+    }catch (Throwable e){
+        System.out.println("Exception: "+ e.toString()+ "\nCause: " +e.getCause()
+                + "\nMessage: "+e.getMessage());
+    
+        e.printStackTrace();
+    
     }
+    finally{
+            try {
+               if(YearsOfPlenty.inFile != null)
+                YearsOfPlenty.inFile.close();
+                
+               if(YearsOfPlenty.outFile != null)
+                YearsOfPlenty.outFile.close();
+               
+               if(YearsOfPlenty.logFile != null)
+                YearsOfPlenty.logFile.close();
+                
+            } catch (IOException ex) {
+                Logger.getLogger(YearsOfPlenty.class.getName()).log(Level.SEVERE, null, ex);
+            }
+    
+}
+    }   
 
     public static void setTheCrops(Crops theCrops) {
         YearsOfPlenty.crops = theCrops;
@@ -74,6 +147,8 @@ public class YearsOfPlenty {
     public static Crops getCrops() {
         return crops;
     }
+
+   
     
     
     

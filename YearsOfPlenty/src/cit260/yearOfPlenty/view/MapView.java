@@ -53,43 +53,43 @@ public class MapView extends View{
         Map map = game.getMap();
         Location[][] locations = map.getLocations();
         
-        System.out.println("\nLocation Map");
+        this.console.println("\nLocation Map");
         
         //Printing out column numbers
         for (int i = 0; i < locations.length; i++) {
-            System.out.print("\t" + (i + 1) + "\t");
+            this.console.print("\t" + (i + 1) + "\t");
         }
-        System.out.print("\n---------------------------------");
+        this.console.print("\n---------------------------------");
         
         //Printing out row numbers and locations
         for (int i = 0; i < locations.length; i++) {
-            System.out.print("\n" + (i + 1) + "|\t");
+            this.console.print("\n" + (i + 1) + "|\t");
             for (int j = 0; j < locations.length; j++) {
                 boolean visited = locations[i][j].isVisited();
                 if (visited == false) {
-                    System.out.print("??\t|\t");
+                    this.console.print("??\t|\t");
                 } else {
                     String mapSymbol = locations[i][j].getSymbol();
-                    System.out.print(mapSymbol + "\t|\t");
+                    this.console.print(mapSymbol + "\t|\t");
                 }
             }
-            System.out.print("\n---------------------------------");
+            this.console.print("\n---------------------------------");
         }
                 
         int row;
         int column;
         
         //Code to facilitate moving to map locations.
-        System.out.println("\nEnter 5 to exit the map...");
-        System.out.println("\nWhat row would you like to travel to?");
+        this.console.println("\nEnter 5 to exit the map...");
+        this.console.println("\nWhat row would you like to travel to?");
         //Row selection
         do {
             row = this.getInput();
             if (row > locations.length || row <= 0) {
                 if (row == 5) {
-                    System.out.println("Exiting to Game Menu...");
+                    this.console.println("Exiting to Game Menu...");
                 } else {
-                    System.out.println("Please choose row 1 or 2.");
+                    this.console.println("Please choose row 1 or 2.");
                 }
             }
         } while (row != 5 && row <= 0 && row > locations.length);
@@ -101,21 +101,21 @@ public class MapView extends View{
                     GameMenuView gameMenu = new GameMenuView();
                     gameMenu.displayGameMenu();
                 } catch(MenuControlException e) {
-                    System.out.println(e.getMessage());
+                    ErrorView.display(this.getClass().getName(),e.getMessage());
                     paramsNotOkay = true;
                 }
             } while(paramsNotOkay);
         }
         
-        System.out.println("What column would you like to travel to?");
+        this.console.println("What column would you like to travel to?");
         //Column selection
         do {
             column = this.getInput();
             if (column > locations.length || column <= 0) {
                 if (column == 5) {
-                    System.out.println("Exiting to Game Menu...");
+                    this.console.println("Exiting to Game Menu...");
                 } else {
-                    System.out.println("Please choose column 1 or 2.");
+                    this.console.println("Please choose column 1 or 2.");
                 }
             }
         } while (column != 5 && column <= 0 && column > locations.length);
@@ -127,20 +127,20 @@ public class MapView extends View{
             row = row - 1;
             column = column - 1;
             String description = locations[row][column].getDescription();
-            System.out.println(description);
+            this.console.println(description);
             locations[row][column].setVisited(true);
         }
         
         int option;
         do {
-            System.out.println("\n\nEnter 5 to quit the map or enter 1 to view the map again.");
+            this.console.println("\n\nEnter 5 to quit the map or enter 1 to view the map again.");
             option = this.getInput();
         } while (option != 5 && option != 1);
         
         if (option == 1) {
             this.displayMapView();
         } else if (option == 5) {
-            System.out.println("Exiting to Game Menu...");
+            this.console.println("Exiting to Game Menu...");
             GameMenuView gameMenu = new GameMenuView();
             gameMenu.displayGameMenu();
         }
