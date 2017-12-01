@@ -14,7 +14,7 @@ import java.io.Serializable;
 public class Game implements Serializable {
     private int totalTime;
     private Player Player;
-    private Crops theCrops = null;
+    private Crops theCrops;
     private Map map;
     private InventoryItem inventoryItem;
 

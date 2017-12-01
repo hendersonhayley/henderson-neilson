@@ -37,7 +37,7 @@ public class CropsView extends View{
         
         boolean paramsNotOkay;
         
-        Crops theCropsObject = YearsOfPlenty.getCrops();
+        Crops theCropsObject = YearsOfPlenty.getTheCrops();
         
         GameInfoItem[] updateItems = GameControl.createUpdateArray();
         

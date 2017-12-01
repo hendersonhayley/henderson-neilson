@@ -119,11 +119,13 @@ public class MainMenuView extends View {
     }
     
     public void saveGame() {
+        System.out.println(YearsOfPlenty.getTheCrops());
         this.console.println("\nEnter the file path for file where the game"
                             + " is to be saved.");
         String filePath = this.getStringInput();
         
         try {
+            System.out.println(YearsOfPlenty.getCurrentGame());
             //save the game to the specified file
             GameControl.saveGame(YearsOfPlenty.getCurrentGame(), filePath);
         } catch (Exception ex) {

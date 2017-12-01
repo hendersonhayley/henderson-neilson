@@ -171,7 +171,7 @@ public class GameControl {
     public static GameInfoItem[] createUpdateArray() {
         GameInfoItem[] infoItems = new GameInfoItem[4];
         
-        Crops crops = YearsOfPlenty.getCrops();
+        Crops crops = YearsOfPlenty.getTheCrops();
         int numAcres = crops.getAcres();
         int numBushels = crops.getWheatInStore();
         
@@ -215,9 +215,14 @@ public class GameControl {
             ObjectInputStream input = new ObjectInputStream(fips);
             
             game = (Game) input.readObject(); // read the game object from file
-            YearsOfPlenty.setCurrentGame(game);
+            System.out.println(game.getPlayer());
+            System.out.println(game.getTheCrops());
+            //YearsOfPlenty.setCurrentGame(game);
         } catch (Exception e) {
             throw new GameControlException(e.getMessage());
         }
+        
+        //close the output file
+        YearsOfPlenty.setCurrentGame(game);
     }
 }

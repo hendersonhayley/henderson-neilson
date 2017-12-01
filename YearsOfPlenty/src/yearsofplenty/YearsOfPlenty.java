@@ -94,6 +94,14 @@ public class YearsOfPlenty {
     public static void setPlayer(Player player) {
         YearsOfPlenty.player = player;
     }
+    
+    public static void setTheCrops(Crops theCrops) {
+        YearsOfPlenty.crops = theCrops;
+    }
+    
+    public static Crops getTheCrops() {
+        return crops;
+    }
     /**
      * @param args the command line arguments
      * @throws exceptions.MenuControlException
@@ -115,44 +123,30 @@ public class YearsOfPlenty {
         
         StartProgramView startProgramView=new StartProgramView();
         startProgramView.displayStartProgramView();
-    return;
+        return;
     
-    }catch (Throwable e){
-        System.out.println("Exception: "+ e.toString()+ "\nCause: " +e.getCause()
-                + "\nMessage: "+e.getMessage());
-    
-        e.printStackTrace();
-    
-    }
-    finally{
-            try {
-               if(YearsOfPlenty.inFile != null)
-                YearsOfPlenty.inFile.close();
-                
-               if(YearsOfPlenty.outFile != null)
-                YearsOfPlenty.outFile.close();
-               
-               if(YearsOfPlenty.logFile != null)
-                YearsOfPlenty.logFile.close();
-                
-            } catch (IOException ex) {
-                Logger.getLogger(YearsOfPlenty.class.getName()).log(Level.SEVERE, null, ex);
-            }
-    
-}
-    }   
+        }catch (Throwable e){
+            System.out.println("Exception: "+ e.toString()+ "\nCause: " +e.getCause()
+                    + "\nMessage: "+e.getMessage());
 
-    public static void setTheCrops(Crops theCrops) {
-        YearsOfPlenty.crops = theCrops;
-    }
-    
-    public static Crops getCrops() {
-        return crops;
-    }
+            e.printStackTrace();
 
-   
-    
-    
-    
-   
+        }
+        finally{
+                try {
+                   if(YearsOfPlenty.inFile != null)
+                    YearsOfPlenty.inFile.close();
+
+                   if(YearsOfPlenty.outFile != null)
+                    YearsOfPlenty.outFile.close();
+
+                   if(YearsOfPlenty.logFile != null)
+                    YearsOfPlenty.logFile.close();
+
+                } catch (IOException ex) {
+                    Logger.getLogger(YearsOfPlenty.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+        }
+    }     
 }
