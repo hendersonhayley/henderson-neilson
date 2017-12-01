@@ -16,7 +16,12 @@ import cit260.yearOfPlenty.ItemType;
 import cit260.yearOfPlenty.Map;
 import cit260.yearOfPlenty.Player;
 import cit260.yearOfPlenty.view.ErrorView;
+import exceptions.GameControlException;
 import exceptions.MapControlException;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import yearsofplenty.YearsOfPlenty;
@@ -191,5 +196,28 @@ public class GameControl {
         infoItems[GameInfo.BUSHELRETURN.ordinal()] = BUSHELRETURN;
         
         return infoItems;
+    }
+
+    public static void saveGame(Game currentGame, String filePath) throws GameControlException{
+        try (FileOutputStream fops = new FileOutputStream(filePath)) {
+            ObjectOutputStream output = new ObjectOutputStream(fops);
+            
+            output.writeObject(currentGame);
+        } catch (Exception e) {
+            throw new GameControlException(e.getMessage());
+        }
+    }
+
+    public static void getSavedGame(String filePath) throws GameControlException {
+        Game game = null;
+        
+        try (FileInputStream fips = new FileInputStream(filePath)) {
+            ObjectInputStream input = new ObjectInputStream(fips);
+            
+            game = (Game) input.readObject(); // read the game object from file
+            YearsOfPlenty.setCurrentGame(game);
+        } catch (Exception e) {
+            throw new GameControlException(e.getMessage());
+        }
     }
 }

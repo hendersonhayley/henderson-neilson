@@ -1,3 +1,0 @@
-cit260.yearOfPlenty.view.GameMenuView - Invalid entry, Please choose an option of 1-5.
-cit260.yearOfPlenty.view.GameMenuView - Invalid entry, Please choose an option of 1-5.
-cit260.yearOfPlenty.view.MainMenuView - Invalid option: Please choose an option 1 - 5

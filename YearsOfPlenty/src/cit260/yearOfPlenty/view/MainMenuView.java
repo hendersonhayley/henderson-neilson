@@ -101,12 +101,34 @@ public class MainMenuView extends View {
 
     }
     
-    public void loadGame() {
-        this.console.println("Load Saved Game function called!");
+    public void loadGame() throws MenuControlException {
+        this.console.println("\nEnter the filepath of your saved game.");
+        
+        String filePath = this.getStringInput();
+        
+        try {
+            //start saved game
+            GameControl.getSavedGame(filePath);
+        } catch (Exception ex) {
+            ErrorView.display("MainMenuView", ex.getMessage());
+        }
+        
+        //display the game menu
+        GameMenuView gameMenu = new GameMenuView();
+        gameMenu.displayGameMenu();
     }
     
     public void saveGame() {
-        this.console.println("Save This Game function called!");
+        this.console.println("\nEnter the file path for file where the game"
+                            + " is to be saved.");
+        String filePath = this.getStringInput();
+        
+        try {
+            //save the game to the specified file
+            GameControl.saveGame(YearsOfPlenty.getCurrentGame(), filePath);
+        } catch (Exception ex) {
+            ErrorView.display("MainMenuView", ex.getMessage());
+        }
     }
     
 }

@@ -43,6 +43,18 @@ public abstract class View implements ViewInterface {
         return option;
         
     }
+    
+    public String getStringInput() {
+        
+        Scanner keyboard = new Scanner(System.in);
+        String input;
+        
+        //this.console.println("Please enter some text.");
+        input = keyboard.nextLine();
+            
+        return input;
+        
+    }
 
     
 }

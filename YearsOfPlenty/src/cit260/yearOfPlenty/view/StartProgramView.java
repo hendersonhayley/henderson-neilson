@@ -84,13 +84,13 @@ public class StartProgramView extends View{
     }
 
     private String getPlayerName() {
-        Scanner keyboard = new Scanner(System.in); //get infile for keyboard
+        //Scanner keyboard = new Scanner(System.in); //get infile for keyboard
         String playerName = ""; //value to be returned
         
         do {
             this.console.println("\n" + this.promptMessage);
             
-            playerName = keyboard.nextLine(); //get next line typed on keyboard
+            playerName = this.getStringInput(); //get next line typed on keyboard
             playerName = playerName.trim(); //trim off leading and trailing blanks
             
             if (playerName.length() < 2) { //must have at least 2 characters
