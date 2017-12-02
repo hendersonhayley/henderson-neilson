@@ -11,6 +11,11 @@ import cit260.yearOfPlenty.control.GameControl;
 import exceptions.CropControlException;
 import exceptions.ListControlException;
 import exceptions.MenuControlException;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import yearsofplenty.YearsOfPlenty;
 
 
 /**
@@ -36,31 +41,40 @@ import exceptions.MenuControlException;
 public class ListView extends View{
     boolean paramsNotOkay;
 
-    public ListView(String message) {
-        super("");
+    public ListView() {//Hayley Henderson entered 12-2 to make it more of a menuview
+        super("\n********************************************" 
+              + "\n*                                        *"
+              + "\n*  Which list would you like to view?    *"
+              + "\n*                                        *"
+              + "\n*  1 - Livestock                         *" 
+              + "\n*  2 - Tools                             *"
+              + "\n*  3 - Fields                            *"
+              + "\n*  4 - Print lists                       *"
+              + "\n*  5 - Quit: quits the game.             *"
+              + "\n*                                        *"
+              + "\n******************************************");
     }
     
      public void displayListView()throws ListControlException, MenuControlException{
+         
+         this.display();
        
      int option;
-     int total=0;  
+     int total=0;
+     int report;
       
-        this.console.println("\nWhat list would you like to view?"
-                           + "\n1-Livestock"
-                           + "\n2-Tools"
-                           + "\n3-Fields"
-                           + "\n5-Exit to Game Menu\n");
+       
         
          //get input and validate
         do {
            
             option = this.getInput();
             
-            if (option <= 0 || option >= 4) {
+            if (option <= 0) {
                 if (option == 5) {
                     this.console.println("Exiting to Game Menu...");
                 } else {
-                   ErrorView.display(this.getClass().getName(),"Please choose 1 - 3 or 5 To Exit.");
+                   ErrorView.display(this.getClass().getName(),"Please choose 1 - 4 or 5 To Exit.");
                    this.displayListView();
                 }
             }
@@ -96,7 +110,7 @@ public class ListView extends View{
          
   }
           this.console.println("\nYou have a total of " + total + " livestock.");
-          
+          this.console.println("\nExiting to Game Menu...");
           
   }
        total = 0;
@@ -134,25 +148,106 @@ public class ListView extends View{
           
        
             this.console.println("\nYou have a total of " + total + " Fields.");
+            this.console.println("\nExiting to Game Menu...");
  }
  
+       //Printing a Report of items in the list
+       //Author:  Hayley henderson
+       //1-If the user enters 4 ask which list to print.
+       //2-Prompt the user for a file path of where the report is to be printed.
+      // 3- Get the file path entered by the end user.
+      // 4-Call another View Layer function that actually prints the report. This
+      //  report must use a character output stream to write to the file, and
+      //  use a for statement to go through the list of items to be displayed.
+      //  The report must include a title, column headings and at least two
+      //  columns of data for each item in the list.
+      // 5-Display a success message to the console if the report was printed
+      //  successfully to the specified file path.
+      // 6-Catch all runtime exceptions thrown during the execution of this end
+      //  user story. For each exception, call the ErrorView.display()
+      //  function to display the message to the console and print the
+      //  message to the log file.
+      
+ if (option == 4){
+         
+        //This prompt asks the user which list to print.   
+          this.console.println("\nWhich List would you like to print?" 
+                                + "\n*  1 - Livestock                         *" 
+                                + "\n*  2 - Tools                             *"
+                                + "\n*  3 - Fields                            *");
+        //this gets the input
+          report = this.getInput();
+          
+       if (report == 1){
+           //this prompt asks the user where the file path is for their report
+        this.console.println("\nEnter the file path where the report will be printed to.");
+        //this gets the path entered
+        String filePath = this.getStringInput();
        
-        /**
-       *Old code from just printing off the items list 
-        *System.out.println("Items");
-        *InventoryItem[] items = GameControl.createItems();
-        *for (InventoryItem item : items) {
-        *    System.out.println(item.description);
-        *}
-        * */
+           //call the lievstockReport function
+           this.livestockReport();
+       }
+     }
+      
+  }
+   
+    //This function will generate the livestockReport
+     public void livestockReport()throws ListControlException, MenuControlException {
+         int total=0;
+         FileWriter outFile  = null; //this defines a variable for the datastream
+         
+         String fileLocation = "report.txt"; //specify the location for the file
+      
+         try{
+           
+             outFile = new FileWriter(fileLocation);
         
-        /* Darren Kearns Test.
-        System.out.println("\nActors");
-        InventoryActor[] actors = GameControl.createActor();
-        for (InventoryActor actor : actors) {
-            System.out.println(actor.description);
-        }
-    */
-    
-}  
-}
+            
+           //print title and colum headings        
+           outFile.write("\n\n Livestock List ");
+           
+           
+        InventoryItem[] items = GameControl.createItems(); 
+        
+        //for( InventoryItem item : items){
+        for (int i=0; i<3; i++){
+             
+              /* for (*/InventoryItem n = items[i]; 
+                   
+                    total += n.quantity;
+                   
+                   outFile.write("\n" + n.getDescription()+ "\n");
+              
+                   
+       } 
+        outFile.flush();
+        
+         }catch (IOException ex) {
+            ErrorView.display("MainMenuView", ex.getMessage());
+        } finally {
+             if (outFile !=null){
+                 try{
+                     outFile.close();
+                     this.console.println("\nYour Report was saved to your file");
+                 } catch (IOException ex2){
+                    this.console.println("Error closing file");
+                 }
+             }
+         }
+         
+     }
+         
+     }    
+         
+          
+             
+        
+        
+        
+         
+        
+        
+        
+      
+       
+ 

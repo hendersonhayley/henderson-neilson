@@ -37,6 +37,15 @@ public class YearsOfPlenty {
     private static PrintWriter outFile = null;
     private static BufferedReader inFile = null;
     private static PrintWriter logFile = null;
+    private static PrintWriter reportFile = null;
+
+    public static PrintWriter getReportFile() {
+        return reportFile;
+    }
+
+    public static void setReportFile(PrintWriter printFile) {
+        YearsOfPlenty.reportFile = printFile;
+    }
 
     public static PrintWriter getLogFile() {
         return logFile;
@@ -119,7 +128,11 @@ public class YearsOfPlenty {
             String filePath = "log.txt";
             FileOutputStream log = new FileOutputStream(filePath);
             YearsOfPlenty.logFile = new PrintWriter(log, true);
-        
+            
+           //OPen Report File
+           String file = "report.txt";
+           FileOutputStream report = new FileOutputStream(file);
+           YearsOfPlenty.reportFile = new PrintWriter(report, true);
         
         StartProgramView startProgramView=new StartProgramView();
         startProgramView.displayStartProgramView();

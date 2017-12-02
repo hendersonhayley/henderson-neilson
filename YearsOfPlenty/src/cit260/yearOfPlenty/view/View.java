@@ -17,6 +17,7 @@ import yearsofplenty.YearsOfPlenty;
 public abstract class View implements ViewInterface {
     
     protected String displayMessage;
+    
     protected final BufferedReader keyboard = YearsOfPlenty.getInFile();
     protected final PrintWriter console = YearsOfPlenty.getOutFile();
     

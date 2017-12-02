@@ -225,4 +225,17 @@ public class GameControl {
         //close the output file
         YearsOfPlenty.setCurrentGame(game);
     }
+    
+   
+            
+             public static void getLiveStockReport(Game currentGame, String filePath) throws GameControlException{
+        try (FileOutputStream fops = new FileOutputStream(filePath)) {
+            ObjectOutputStream output = new ObjectOutputStream(fops);
+            
+            output.writeObject(currentGame);
+        } catch (Exception e) {
+            throw new GameControlException(e.getMessage());
+        }
+    }
+
 }

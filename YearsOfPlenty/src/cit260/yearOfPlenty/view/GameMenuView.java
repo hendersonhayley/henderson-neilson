@@ -77,7 +77,7 @@ public class GameMenuView extends View {
          do{
             paramsNotOkay = false;
             try {
-                ListView list = new ListView("");
+                ListView list = new ListView();
                 list.displayListView();
                  } catch(ListControlException e){
             ErrorView.display(this.getClass().getName(),e.getMessage());
