@@ -6,10 +6,17 @@
 package cit260.yearOfPlenty.view;
 
 import cit260.yearOfPlenty.Game;
+import cit260.yearOfPlenty.InventoryItem;
 import cit260.yearOfPlenty.Location;
 import cit260.yearOfPlenty.Map;
+import cit260.yearOfPlenty.MapLocation;
+import cit260.yearOfPlenty.MapLocations;
+import cit260.yearOfPlenty.control.GameControl;
 import cit260.yearOfPlenty.control.MapControl;
+import exceptions.MapControlException;
 import exceptions.MenuControlException;
+import java.io.FileWriter;
+import java.io.IOException;
 import yearsofplenty.YearsOfPlenty;
 
 /**
@@ -24,7 +31,7 @@ public class MapView extends View{
         super(message);
     }
     
-    public void displayMapView() throws MenuControlException{
+    public void displayMapView() throws MenuControlException {
         /*
             game = get the currentGame from the main class
             locations = get the 2-D locations array from the map
@@ -80,14 +87,23 @@ public class MapView extends View{
         int column;
         
         //Code to facilitate moving to map locations.
-        this.console.println("\nEnter 5 to exit the map...");
+        this.console.println("\nEnter 6 to exit the map, or 7 to print a report of Map Locations to a file.");
         this.console.println("\nWhat row would you like to travel to?");
         //Row selection
         do {
             row = this.getInput();
             if (row > locations.length || row <= 0) {
-                if (row == 5) {
+                if (row == 6) {
                     this.console.println("Exiting to Game Menu...");
+                } else if (row == 7) {
+                    //request for a file path to be entered
+                    this.console.println("\nEnter the file path where the report will be printed to.");
+                    
+                    //user enters path
+                    String filePath = this.getStringInput();
+
+                    //call function to create report
+                    this.mapLocationReport(filePath);
                 } else {
                     this.console.println("Please choose row 1 or 2.");
                 }
@@ -145,6 +161,67 @@ public class MapView extends View{
             gameMenu.displayGameMenu();
         }
         
+    }
+
+    private void mapLocationReport(String filePath) throws MenuControlException {
+        FileWriter outFile  = null;
+        
+        try{
+           
+            outFile = new FileWriter(filePath);
+        
+            
+            //print title and colum headings        
+            outFile.write("\nList of Map Locations ");
+           
+           
+            MapLocation[] locations = new MapLocation[4]; 
+
+            MapLocation NILERIVER = new MapLocation();
+            NILERIVER.setDescription("\nYou have reached the Nile River."
+                                    + "\nYou cannot go further East.");
+            NILERIVER.setName("Nile River");
+            locations[MapLocations.NILERIVER.ordinal()] = NILERIVER;
+
+            MapLocation BARN = new MapLocation();
+            BARN.setDescription("\nYou have reached the Barn."
+                                + "\nThe Barn is where all of your"
+                                + "\ngrain, hay, and straw is stored"
+                                + "\nas well as your livestock.");
+            BARN.setName("Barn");
+            locations[MapLocations.BARN.ordinal()] = BARN;
+
+            MapLocation JEWELRYSHOP = new MapLocation();
+            JEWELRYSHOP.setDescription("\nWhy are you wasting your time buying jewelry?"
+                                        + "\nWe have work to do.");
+            JEWELRYSHOP.setName("Jewelry Shop");
+            locations[MapLocations.JEWELRYSHOP.ordinal()] = JEWELRYSHOP;
+
+            MapLocation PHARAOHSCOURT = new MapLocation();
+            PHARAOHSCOURT.setDescription("\nYou have reached the Pharaoh's Court."
+                                        + "\nPharaoh asks: 'Have you brought me my portion of grain?'");
+            PHARAOHSCOURT.setName("Pharaoh's Court");
+            locations[MapLocations.PHARAOHSCOURT.ordinal()] = PHARAOHSCOURT;
+            
+            for (int i = 0; i < locations.length; i++) {
+                MapLocation location = locations[i];
+                outFile.write("\n" + location.getName() + " - " + location.getDescription() + "\n");
+            }
+
+            outFile.flush();
+          
+        } catch (IOException ex) {
+            ErrorView.display("MapView", ex.getMessage());
+        } finally {
+             if (outFile !=null){
+                 try{
+                     outFile.close();
+                     this.console.println("\nMap Location report successfully created.");
+                 } catch (IOException ex2){
+                    this.console.println("Error closing file");
+                 }
+             }
+         }
     }
     
 }
