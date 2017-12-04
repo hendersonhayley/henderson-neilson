@@ -186,6 +186,16 @@ public class ListView extends View{
        
            //call the lievstockReport function
            this.livestockReport();
+       } 
+       
+       else if (report == 3){
+           //this prompt asks the user where the file path is for their report
+        this.console.println("\nEnter the file path where the report will be printed to.");
+        //this gets the path entered
+        String filePath = this.getStringInput();
+       
+           //call the fieldsReport function
+           this.fieldsReport();
        }
      }
       
@@ -237,18 +247,47 @@ public class ListView extends View{
          }
          
      }
+     
+         //This function will generate the fieldsReport Darren Kearns
+     public void fieldsReport()throws ListControlException, MenuControlException {
+         int total=0;
+         FileWriter outFile  = null; //this defines a variable for the datastream
          
-     }    
-         
-          
-             
-        
-        
-        
-         
-        
-        
-        
+         String fileLocation = "fieldreport.txt"; //specify the location for the file
       
-       
- 
+         try{
+           
+             outFile = new FileWriter(fileLocation);
+        
+            
+           //print title       
+           outFile.write("\n\nFields List \n");
+           
+        
+        InventoryField[] fields = GameControl.createField();
+        //Calculate quantity of fields. 
+            for (InventoryField field : fields) {
+                total += field.quantity;
+                
+                outFile.write("\n" + field.getDescription()+ "\n");
+            }   
+        
+        outFile.flush();//closing file
+        
+        //checking to see if file was filled and saved.  
+         }catch (IOException ex) {
+            ErrorView.display("MainMenuView", ex.getMessage());
+        } finally {
+             if (outFile !=null){
+                 try{
+                     outFile.close();
+                     this.console.println("\nYour Report was saved to your file");
+                 } catch (IOException ex2){
+                    this.console.println("Error closing file");
+                 }
+             }
+         }
+         
+     }
+     
+     }    
