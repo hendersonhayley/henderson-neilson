@@ -178,34 +178,34 @@ public class MapView extends View{
             MapLocation[] locations = new MapLocation[4]; 
 
             MapLocation NILERIVER = new MapLocation();
-            NILERIVER.setDescription("\nYou have reached the Nile River."
-                                    + "\nYou cannot go further East.");
+            NILERIVER.setDescription(System.getProperty("line.separator") + "You have reached the Nile River."
+                                    + System.getProperty("line.separator") + "You cannot go further East.");
             NILERIVER.setName("Nile River");
             locations[MapLocations.NILERIVER.ordinal()] = NILERIVER;
 
             MapLocation BARN = new MapLocation();
-            BARN.setDescription("\nYou have reached the Barn."
-                                + "\nThe Barn is where all of your"
-                                + "\ngrain, hay, and straw is stored"
-                                + "\nas well as your livestock.");
+            BARN.setDescription(System.getProperty("line.separator") + "You have reached the Barn."
+                                + System.getProperty("line.separator") + "The Barn is where all of your"
+                                + System.getProperty("line.separator") + "grain, hay, and straw is stored"
+                                + System.getProperty("line.separator") + "as well as your livestock.");
             BARN.setName("Barn");
             locations[MapLocations.BARN.ordinal()] = BARN;
 
             MapLocation JEWELRYSHOP = new MapLocation();
-            JEWELRYSHOP.setDescription("\nWhy are you wasting your time buying jewelry?"
-                                        + "\nWe have work to do.");
+            JEWELRYSHOP.setDescription(System.getProperty("line.separator") + "Why are you wasting your time buying jewelry?"
+                                        + System.getProperty("line.separator") + "We have work to do.");
             JEWELRYSHOP.setName("Jewelry Shop");
             locations[MapLocations.JEWELRYSHOP.ordinal()] = JEWELRYSHOP;
 
             MapLocation PHARAOHSCOURT = new MapLocation();
-            PHARAOHSCOURT.setDescription("\nYou have reached the Pharaoh's Court."
-                                        + "\nPharaoh asks: 'Have you brought me my portion of grain?'");
+            PHARAOHSCOURT.setDescription(System.getProperty("line.separator") + "You have reached the Pharaoh's Court."
+                                        + System.getProperty("line.separator") + "Pharaoh asks: 'Have you brought me my portion of grain?'");
             PHARAOHSCOURT.setName("Pharaoh's Court");
             locations[MapLocations.PHARAOHSCOURT.ordinal()] = PHARAOHSCOURT;
             
             for (int i = 0; i < locations.length; i++) {
                 MapLocation location = locations[i];
-                outFile.write("\n" + location.getName() + " - " + location.getDescription() + "\n");
+                outFile.write(System.getProperty("line.separator") + location.getName() + " - " + location.getDescription() + System.getProperty("line.separator"));
             }
 
             outFile.flush();
