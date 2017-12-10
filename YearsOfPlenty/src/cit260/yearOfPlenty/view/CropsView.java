@@ -267,7 +267,7 @@ public class CropsView extends View{
         
             newAcres = (currentAcres - amount);
             theCropsObject.setAcres(newAcres);
-            theCropsObject.setHarvest(amount);
+            //theCropsObject.setHarvest(amount);
             
         this.console.println("\nYou have chosen to harvest " + amount + " acres of land.");
         

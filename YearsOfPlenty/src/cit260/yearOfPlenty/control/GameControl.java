@@ -42,7 +42,7 @@ public class GameControl {
         return player;
     }
 
-    public static void createCrops() {
+    public static Crops createCrops() {
         Crops theCrops = new Crops();
         
         theCrops.setYear(0);
@@ -57,12 +57,15 @@ public class GameControl {
         theCrops.setPlanted(1000);
         theCrops.setFed(0);
         
-        YearsOfPlenty.setTheCrops(theCrops);
+        YearsOfPlenty.setTheCrops(theCrops); //save the crops object
+        
+        return theCrops;
+        
     }
     
     //Author: Team
     //Purpose: to create a new game.
-    public static void createNewGame(Player player) {
+    public static void createNewGame(Player player, Crops theCrops) {
         
         /* Algorithm:
         public static int createNewGame(Player player) {
@@ -89,8 +92,13 @@ public class GameControl {
             
         }
         
+        if (theCrops == null) {
+            theCrops = GameControl.createCrops();
+        }
+        
         Game game = new Game();
         game.setPlayer(player);
+        game.setTheCrops(theCrops);
         
         YearsOfPlenty.setCurrentGame(game);
         
@@ -224,6 +232,8 @@ public class GameControl {
         
         //close the output file
         YearsOfPlenty.setCurrentGame(game);
+        YearsOfPlenty.setTheCrops(game.getTheCrops());
+        YearsOfPlenty.setPlayer(game.getPlayer());
     }
     
    

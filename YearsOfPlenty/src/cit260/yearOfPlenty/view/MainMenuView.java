@@ -83,7 +83,7 @@ public class MainMenuView extends View {
     public void startNewGame() throws MenuControlException {
         this.console.println("Start New Game function called!");
         //create a new game
-        GameControl.createNewGame(YearsOfPlenty.getPlayer());
+        GameControl.createNewGame(YearsOfPlenty.getPlayer(), YearsOfPlenty.getTheCrops());
         
         //display the game menu
         boolean paramsNotOkay;

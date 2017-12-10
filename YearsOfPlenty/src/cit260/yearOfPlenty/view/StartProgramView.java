@@ -55,8 +55,6 @@ public class StartProgramView extends View{
         String playerName = this.getPlayerName();
         GameControl.createPlayer(playerName);
         
-        GameControl.createCrops();
-        
         this.console.println("\n\n\n\n");
         this.console.println(playerName + ", you have been appointed overseer for your");
         this.console.println("village. Tread carefully, if your people are not fed well");
