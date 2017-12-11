@@ -15,15 +15,11 @@ import cit260.yearOfPlenty.InventoryItem;
 import cit260.yearOfPlenty.ItemType;
 import cit260.yearOfPlenty.Map;
 import cit260.yearOfPlenty.Player;
-import cit260.yearOfPlenty.view.ErrorView;
 import exceptions.GameControlException;
-import exceptions.MapControlException;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import yearsofplenty.YearsOfPlenty;
 
 /**
@@ -247,5 +243,14 @@ public class GameControl {
             throw new GameControlException(e.getMessage());
         }
     }
-
+             
+ public static void getFieldReport(Game currentGame, String filePath) throws GameControlException{
+        try (FileOutputStream fops = new FileOutputStream(filePath)) {
+            ObjectOutputStream output = new ObjectOutputStream(fops);
+            
+            output.writeObject(currentGame);
+        } catch (Exception e) {
+            throw new GameControlException(e.getMessage());
+        }
+    }
 }

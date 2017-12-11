@@ -8,14 +8,10 @@ package cit260.yearOfPlenty.view;
 import cit260.yearOfPlenty.InventoryField;
 import cit260.yearOfPlenty.InventoryItem;
 import cit260.yearOfPlenty.control.GameControl;
-import exceptions.CropControlException;
 import exceptions.ListControlException;
 import exceptions.MenuControlException;
-import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
-import yearsofplenty.YearsOfPlenty;
 
 
 /**
@@ -247,10 +243,55 @@ public class ListView extends View{
          }
          
      }
-     
-         //This function will generate the fieldsReport Darren Kearns
-     public void fieldsReport()throws ListControlException, MenuControlException {
+     // L13 Individual Darren Kearns
+     public void toolReport()throws ListControlException, MenuControlException {
          int total=0;
+         FileWriter outFile  = null; //this defines a variable for the datastream
+         
+         String fileLocation = "toolreport.txt"; //specify the location for the file
+      
+         try{
+           
+             outFile = new FileWriter(fileLocation);
+        
+            
+           //print title and colum headings        
+           outFile.write("\n\nTools List ");
+           
+           
+        InventoryItem[] items = GameControl.createItems(); 
+        
+        //prints off the description of items in list to file
+        for (int i=3; i<6; i++){
+             
+              /* for (*/InventoryItem n = items[i]; 
+                   
+                    total += n.quantity;
+                   
+                   outFile.write("\n" + n.getDescription()+ "\n");
+              
+                   
+       } 
+        outFile.flush();//closing file
+        
+        //checking to see if file was filled and saved.  
+         }catch (IOException ex) {
+            ErrorView.display("MainMenuView", ex.getMessage());
+        } finally {
+             if (outFile !=null){
+                 try{
+                     outFile.close();
+                     this.console.println("\nYour Report was saved to your file");
+                 } catch (IOException ex2){
+                    this.console.println("Error closing file");
+                 }
+             }
+         }
+         
+     }
+     
+         
+     public void fieldsReport()throws ListControlException, MenuControlException {
          FileWriter outFile  = null; //this defines a variable for the datastream
          
          String fileLocation = "fieldreport.txt"; //specify the location for the file
@@ -267,7 +308,6 @@ public class ListView extends View{
         InventoryField[] fields = GameControl.createField();
         //Calculate quantity of fields. 
             for (InventoryField field : fields) {
-                total += field.quantity;
                 
                 outFile.write("\n" + field.getDescription()+ "\n");
             }   
